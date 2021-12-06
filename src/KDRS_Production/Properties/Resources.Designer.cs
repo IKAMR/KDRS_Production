@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KDRS_Production.Properties
+namespace KDRS_Produksjon.Properties
 {
 
 

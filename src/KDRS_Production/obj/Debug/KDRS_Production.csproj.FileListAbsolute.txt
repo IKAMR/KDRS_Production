@@ -5,7 +5,16 @@ C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\KDRS_Production.ex
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\KDRS_Production.pdb
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\EntityFramework.dll
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\EntityFramework.SqlServer.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\IKVM.OpenJDK.Charsets.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\IKVM.OpenJDK.Core.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\IKVM.OpenJDK.Localedata.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\IKVM.OpenJDK.Text.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\IKVM.OpenJDK.Util.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\IKVM.OpenJDK.XML.API.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\IKVM.Runtime.dll
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\Microsoft.Data.Sqlite.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\saxon-he-10.6.dll
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\saxon-he-api-10.6.dll
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\SQLitePCLRaw.core.dll
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Buffers.dll
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Data.SQLite.dll
@@ -17,6 +26,7 @@ C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Runtime.Com
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\EntityFramework.xml
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\EntityFramework.SqlServer.xml
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\Microsoft.Data.Sqlite.xml
+C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\saxon-he-api-10.6.xml
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Buffers.xml
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Data.SQLite.xml
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Memory.xml

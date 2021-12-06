@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mets:mets xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OBJID="UUID:f3f3dc79-75f6-4c2a-aea3-2ac5f2ceb0b6" LABEL="N02 Merkelapp Egendefinert" TYPE="AIP" PROFILE="http://xml.ra.se/METS/RA_METS_eARD.xml" xsi:schemaLocation="http://www.loc.gov/METS/ http://schema.arkivverket.no/METS/mets.xsd" xmlns:mets="http://www.loc.gov/METS/">
+  <mets:metsHdr CREATEDATE="2019-03-13T00:00:00">
+    <mets:agent ROLE="ARCHIVIST" TYPE="ORGANIZATION">
+      <mets:name>B01 Arkivskaper</mets:name>
+    </mets:agent>
+    <mets:agent ROLE="ARCHIVIST" TYPE="INDIVIDUAL">
+      <mets:name>B02 Kontaktperson</mets:name>
+      <mets:note>B03 Adresse</mets:note>
+      <mets:note>B04 Telefon</mets:note>
+      <mets:note>B05 Epost</mets:note>
+      <mets:note>notescontent:Address,Telephone,Email</mets:note>
+    </mets:agent>
+    <mets:agent ROLE="OTHER" OTHERROLE="SUBMITTER" TYPE="ORGANIZATION">
+      <mets:name>C01 Overfører</mets:name>
+    </mets:agent>
+    <mets:agent ROLE="OTHER" OTHERROLE="SUBMITTER" TYPE="INDIVIDUAL">
+      <mets:name>C02 Kontaktperson</mets:name>
+      <mets:note>C03 Adresse</mets:note>
+      <mets:note>C04 Telefon</mets:note>
+      <mets:note>C05 Epost</mets:note>
+      <mets:note>notescontent:Address,Telephone,Email</mets:note>
+    </mets:agent>
+    <mets:agent ROLE="OTHER" OTHERROLE="PRODUCER" TYPE="ORGANIZATION">
+      <mets:name>D01 Produsent</mets:name>
+    </mets:agent>
+    <mets:agent ROLE="OTHER" OTHERROLE="PRODUCER" TYPE="INDIVIDUAL">
+      <mets:name>D02 Kontaktperson</mets:name>
+      <mets:note>D03 Adresse</mets:note>
+      <mets:note>D04 Telefon</mets:note>
+      <mets:note>D05 Epost</mets:note>
+      <mets:note>notescontent:Address,Telephone,Email</mets:note>
+    </mets:agent>
+    <mets:agent ROLE="IPOWNER" TYPE="ORGANIZATION">
+      <mets:name>E01 Eier</mets:name>
+    </mets:agent>
+    <mets:agent ROLE="IPOWNER" TYPE="INDIVIDUAL">
+      <mets:name>E02 Kontaktperson</mets:name>
+      <mets:note>E03 Adresse</mets:note>
+      <mets:note>E04 Telefon</mets:note>
+      <mets:note>E05 Epost</mets:note>
+      <mets:note>notescontent:Address,Telephone,Email</mets:note>
+    </mets:agent>
+    <mets:agent ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>F01 Skaper</mets:name>
+    </mets:agent>
+    <mets:agent ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>F02 Kontaktperson</mets:name>
+      <mets:note>F03 Adresse</mets:note>
+      <mets:note>F04 Telefon</mets:note>
+      <mets:note>F05 Epost</mets:note>
+      <mets:note>notescontent:Address,Telephone,Email</mets:note>
+    </mets:agent>
+    <mets:agent ROLE="CREATOR" TYPE="OTHER" OTHERTYPE="SOFTWARE">
+      <mets:name>Arkade 5</mets:name>
+      <mets:note>2.5.0</mets:note>
+      <mets:note>notescontent:Version</mets:note>
+    </mets:agent>
+    <mets:agent ROLE="PRESERVATION" TYPE="ORGANIZATION">
+      <mets:name>G01 Mottaker</mets:name>
+    </mets:agent>
+    <mets:agent ROLE="ARCHIVIST" TYPE="OTHER" OTHERTYPE="SOFTWARE">
+      <mets:name>H01 Systemnavn</mets:name>
+      <mets:note>H02 Versjon</mets:note>
+      <mets:note>Noark5</mets:note>
+      <mets:note>H04 3.1</mets:note>
+      <mets:note>notescontent:Version,Type,TypeVersion</mets:note>
+    </mets:agent>
+    <mets:agent ROLE="OTHER" OTHERROLE="PRODUCER" TYPE="OTHER" OTHERTYPE="SOFTWARE">
+      <mets:name>I01 Uttrekkssystem</mets:name>
+      <mets:note>I02 Versjon</mets:note>
+      <mets:note>Noark5</mets:note>
+      <mets:note>K04 3.1</mets:note>
+      <mets:note>notescontent:Version,Type,TypeVersion</mets:note>
+    </mets:agent>
+    <mets:altRecordID TYPE="DELIVERYSPECIFICATION">A01 Arkivbeskrivelse</mets:altRecordID>
+    <mets:altRecordID TYPE="SUBMISSIONAGREEMENT">A02 Avtalenr</mets:altRecordID>
+    <mets:altRecordID TYPE="STARTDATE">2014-01-01</mets:altRecordID>
+    <mets:altRecordID TYPE="ENDDATE">2018-12-31</mets:altRecordID>
+  </mets:metsHdr>
+  <mets:fileSec>
+    <mets:fileGrp ID="fileGroup001" USE="FILES">
+      <mets:file ID="fileId_0" MIMETYPE="application/tar" SIZE="788480" CREATED="2021-11-10T17:06:20.7459386+01:00" CHECKSUM="fa0bd53ba012f3d777eee2f98e75ce0c8a2fea304e6ea3f6b44d5398452d56c5" CHECKSUMTYPE="SHA-256" USE="Datafile">
+        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="file:f3f3dc79-75f6-4c2a-aea3-2ac5f2ceb0b6.tar" />
+      </mets:file>
+      <mets:file ID="fileId_1" MIMETYPE="application/xml" SIZE="14437" CREATED="2021-11-10T17:06:20.7767837+01:00" CHECKSUM="e2b81adbb8a108db460f311fe406b06516923370a7ad3f2992955176d8dde6ec" CHECKSUMTYPE="SHA-256" USE="Datafile">
+        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="file:f3f3dc79-75f6-4c2a-aea3-2ac5f2ceb0b6/dias-mets.xml" />
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
+  <mets:structMap>
+    <mets:div />
+  </mets:structMap>
+</mets:mets>

@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnOpenEventLog = new System.Windows.Forms.Button();
             this.pnlEventLog = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtBxPackID = new System.Windows.Forms.TextBox();
             this.bntSaveEvent = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,21 +45,36 @@
             this.txtBxComments = new System.Windows.Forms.TextBox();
             this.txtBxDescription = new System.Windows.Forms.TextBox();
             this.txtBxEventTime = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtBxPackID = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnSaveMetadata = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.btnLogMeta = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtBxPackageID = new System.Windows.Forms.TextBox();
+            this.btnImportXml = new System.Windows.Forms.Button();
+            this.txtBxInfoXmlPath = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnSelectInfoXml = new System.Windows.Forms.Button();
+            this.lblError = new System.Windows.Forms.Label();
             this.pnlEventLog.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtbxInPath
             // 
-            this.txtbxInPath.Location = new System.Drawing.Point(109, 65);
+            this.txtbxInPath.Location = new System.Drawing.Point(109, 103);
             this.txtbxInPath.Name = "txtbxInPath";
             this.txtbxInPath.Size = new System.Drawing.Size(502, 20);
             this.txtbxInPath.TabIndex = 0;
             // 
             // txtBxOutPath
             // 
-            this.txtBxOutPath.Location = new System.Drawing.Point(109, 113);
+            this.txtBxOutPath.Location = new System.Drawing.Point(109, 151);
             this.txtBxOutPath.Name = "txtBxOutPath";
             this.txtBxOutPath.Size = new System.Drawing.Size(502, 20);
             this.txtBxOutPath.TabIndex = 1;
@@ -65,7 +82,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(109, 46);
+            this.label1.Location = new System.Drawing.Point(109, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 2;
@@ -74,11 +91,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(109, 97);
+            this.label2.Location = new System.Drawing.Point(109, 135);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Out path";
+            this.label2.Text = "Work path";
             // 
             // btnOpenEventLog
             // 
@@ -109,6 +126,22 @@
             this.pnlEventLog.TabIndex = 5;
             this.pnlEventLog.Visible = false;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Log Tag";
+            // 
+            // txtBxPackID
+            // 
+            this.txtBxPackID.Location = new System.Drawing.Point(4, 30);
+            this.txtBxPackID.Name = "txtBxPackID";
+            this.txtBxPackID.Size = new System.Drawing.Size(228, 20);
+            this.txtBxPackID.TabIndex = 9;
+            // 
             // bntSaveEvent
             // 
             this.bntSaveEvent.Location = new System.Drawing.Point(4, 318);
@@ -124,9 +157,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(4, 226);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Comments";
+            this.label6.Text = "Desription";
             // 
             // label5
             // 
@@ -142,9 +175,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(4, 116);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Description";
+            this.label4.Text = "Title";
             // 
             // label3
             // 
@@ -186,27 +219,156 @@
             this.txtBxEventTime.Size = new System.Drawing.Size(228, 20);
             this.txtBxEventTime.TabIndex = 0;
             // 
-            // label7
+            // panel1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Package ID";
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.btnSaveMetadata);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Location = new System.Drawing.Point(421, 224);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(282, 356);
+            this.panel1.TabIndex = 7;
             // 
-            // txtBxPackID
+            // label8
             // 
-            this.txtBxPackID.Location = new System.Drawing.Point(4, 30);
-            this.txtBxPackID.Name = "txtBxPackID";
-            this.txtBxPackID.Size = new System.Drawing.Size(228, 20);
-            this.txtBxPackID.TabIndex = 9;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(46, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Avtalenr";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(4, 30);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(228, 20);
+            this.textBox1.TabIndex = 9;
+            // 
+            // btnSaveMetadata
+            // 
+            this.btnSaveMetadata.Location = new System.Drawing.Point(4, 318);
+            this.btnSaveMetadata.Name = "btnSaveMetadata";
+            this.btnSaveMetadata.Size = new System.Drawing.Size(117, 23);
+            this.btnSaveMetadata.TabIndex = 8;
+            this.btnSaveMetadata.Text = "Save metadata";
+            this.btnSaveMetadata.UseVisualStyleBackColor = true;
+            this.btnSaveMetadata.Click += new System.EventHandler(this.btnSaveMetadata_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 116);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(76, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "Kontaktperson";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(4, 64);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 13);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Arkivskaper";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(4, 132);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(228, 20);
+            this.textBox3.TabIndex = 1;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(4, 82);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(228, 20);
+            this.textBox4.TabIndex = 0;
+            // 
+            // btnLogMeta
+            // 
+            this.btnLogMeta.Location = new System.Drawing.Point(421, 194);
+            this.btnLogMeta.Name = "btnLogMeta";
+            this.btnLogMeta.Size = new System.Drawing.Size(102, 23);
+            this.btnLogMeta.TabIndex = 6;
+            this.btnLogMeta.Text = "Import Metadata";
+            this.btnLogMeta.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(109, 28);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(64, 13);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Package ID";
+            // 
+            // txtBxPackageID
+            // 
+            this.txtBxPackageID.Location = new System.Drawing.Point(109, 47);
+            this.txtBxPackageID.Name = "txtBxPackageID";
+            this.txtBxPackageID.Size = new System.Drawing.Size(502, 20);
+            this.txtBxPackageID.TabIndex = 8;
+            // 
+            // btnImportXml
+            // 
+            this.btnImportXml.Location = new System.Drawing.Point(109, 650);
+            this.btnImportXml.Name = "btnImportXml";
+            this.btnImportXml.Size = new System.Drawing.Size(137, 31);
+            this.btnImportXml.TabIndex = 10;
+            this.btnImportXml.Text = "Import info.xml";
+            this.btnImportXml.UseVisualStyleBackColor = true;
+            this.btnImportXml.Click += new System.EventHandler(this.btnImportXml_Click);
+            // 
+            // txtBxInfoXmlPath
+            // 
+            this.txtBxInfoXmlPath.Location = new System.Drawing.Point(109, 624);
+            this.txtBxInfoXmlPath.Name = "txtBxInfoXmlPath";
+            this.txtBxInfoXmlPath.Size = new System.Drawing.Size(502, 20);
+            this.txtBxInfoXmlPath.TabIndex = 11;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btnSelectInfoXml
+            // 
+            this.btnSelectInfoXml.Location = new System.Drawing.Point(109, 595);
+            this.btnSelectInfoXml.Name = "btnSelectInfoXml";
+            this.btnSelectInfoXml.Size = new System.Drawing.Size(137, 23);
+            this.btnSelectInfoXml.TabIndex = 12;
+            this.btnSelectInfoXml.Text = "Choose info.xml";
+            this.btnSelectInfoXml.UseVisualStyleBackColor = true;
+            this.btnSelectInfoXml.Click += new System.EventHandler(this.btnSelectInfoXml_Click);
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Location = new System.Drawing.Point(106, 707);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 13);
+            this.lblError.TabIndex = 13;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 708);
+            this.ClientSize = new System.Drawing.Size(800, 731);
+            this.Controls.Add(this.lblError);
+            this.Controls.Add(this.btnSelectInfoXml);
+            this.Controls.Add(this.txtBxInfoXmlPath);
+            this.Controls.Add(this.btnImportXml);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.txtBxPackageID);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnLogMeta);
             this.Controls.Add(this.pnlEventLog);
             this.Controls.Add(this.btnOpenEventLog);
             this.Controls.Add(this.label2);
@@ -217,6 +379,8 @@
             this.Text = "Form1";
             this.pnlEventLog.ResumeLayout(false);
             this.pnlEventLog.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,6 +405,22 @@
         private System.Windows.Forms.Button bntSaveEvent;
         private System.Windows.Forms.Label label7;
         protected internal System.Windows.Forms.TextBox txtBxPackID;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label8;
+        protected internal System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnSaveMetadata;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox3;
+        protected internal System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button btnLogMeta;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtBxPackageID;
+        private System.Windows.Forms.Button btnImportXml;
+        private System.Windows.Forms.TextBox txtBxInfoXmlPath;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnSelectInfoXml;
+        private System.Windows.Forms.Label lblError;
     }
 }
 

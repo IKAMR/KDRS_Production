@@ -1,0 +1,104 @@
+# 15KK_nnn_depot-log.txt
+
+# Innhold: Logg av IKAMR depotoperasjoner med KDRS og IKAMR prosesser og rutiner
+Navn; depot-log
+Depot: IKAMR
+Versjon; 1.9
+Dato; 2020-07-02
+
+# Header
+Arkivbeskrivelse; 15KK_nnn <system> (yyyy-yyyy)
+Arkivskaper; 15KK <navn> kommune
+Sak; IKAMR YY/nnn
+
+Dato innlevering; yyyy-mm-dd
+Innleveringsnr.: E-15KK-YYYY-nnnn
+Innleveringspakke SIP uuid: <uuid>
+
+Produsent; <organisasjon produsent: Arkivskaper/Region IT/Leverandør/Depot>
+Produsent person; <Person Navn>
+
+Overfører; <organisasjon produsent: Arkivskaper/Region IT/Leverandør/Depot>
+Overfører person; <Person Navn>
+
+Depot; Interkommunalt Arkiv for Møre og Romsdal IKS
+Depot kortnavn; IKAMR
+
+Arkivar 1 navn; Torbjørn Aasen
+Arkivar 1 kortnavn; taa
+
+Arkivar 2 navn; Tore Fadnes
+Arkivar 2 kortnavn; tfa
+
+# INFO: Formattering logglinje
+# INFO: Seksjon; Datotid; Navn; Resultat; Beskrivelse
+# INFO: A1-1; taa; 2020-02-03T13:15; Kartlegging av system; Godkjent; Arkivskaper, Produsent og Depot
+# INFO: Resultat verdier = Godkjent | Godkjent med avvik | Avvist | Utgår | Venter | Avvik
+
+# Del I: Forberedelse deponering
+A1; ; Forberedelse deponering; ; 
+A1-1; ; ; Kartlegging av system; ; Arkivskaper, Produsent og Depot
+A1-2; ; ; Bevaringsplanlegging/vurdering; ; IKAMR JPn Arkivskaper, Produsent og Depot innmelding system
+A1-3; ; ; Avtale innlevering; ; IKAMR JPn Arkivskaper bekreftelse avtale
+A1-4; ; ; Samle opplysninger; ; IKAMR JPn Arkivskaper/Produsent/ <system> Informasjon om innlevering
+A1-5; ; ; Uttrekk; ; Produsert som Noark 5 v3.1/4.0/5.0-uttrekk/SIARD-uttrekk migrert fra Noark 4/Fagsystem
+A1-6; ; ; Oppretting av Innleveringspakke SIP; ; Produsent Arkade 5 v1.6.1.0
+A1-7; ; ; Innlevering av SIP; ; IKAMR JPn Overfører KDRS Filesender/nedlastet til karantene IKAMR-Knn
+
+# Del II: Mottak, karantene og kvittering
+A2; ; ; Mottakskontroll; ; 
+A2-1; ; ; Håndtering av avtale; ; IKAMR JPn Avtale deponering
+A2-2; ; ; Oppretting av depot-logg; ; 15KK_nnn_depot-log.txt
+A2-3; ; ; Mottak; ; Innleveringspakke SIP og info.xml metadata
+A2-3.1; ; ; Mottak Innleveringspakke SIP; ;
+A2-3.1.a; ; ; Opprette mappestruktur på karantenemedie; ; Standard mappestruktur (med depot logg)
+
+A2-3.1.b; ; ; Mottak Innleveringspakke SIP; ; Lastet ned <SIP uuid>.zip på n.n GB fra Overfører
+A2-3.1.c; ; ; Utpakking Innleveringspakke SIP (zip kryptert); ; Pakket ut <SIP uuid>.tar på n.n GB
+
+A2-3.1.b; ; ; Mottak Innleveringspakke SIP; ; Lastet ned <SIP uuid>.tar på n.n GB fra Overfører
+A2-3.1.c; ; ; Utpakking Innleveringspakke SIP (zip kryptert); Utgår; Mottatt DIAS SIP tar-fil
+
+A2-3.1.d; ; ; Karantene Innleveringspakke SIP; ; Til karantene IKAMR-Knn som YYYY-MM-DD_15KK_nnn_E-15KK-YYYY-nnnn
+A2-3.2; ; ; Mottak info.xml (DIAS metadata); ; IKAMR JPn info.xml mottatt fra Arkivskaper/Produsent/Overfører (arkivleder mangler kopi)
+A2-4; ; ; Registrering (Informasjon om innleveringen); ; IKAMR JPn / Ikke mottatt fra Arkivskaper!
+A2-5; ; ; Utsending av kvittering; ; Kvittering Innleveringspakke SIP
+
+# Del III: Virus- og integritets-kontroll
+A2-6; ; ; Viruskontroll; ; ESET scan med skjermdump
+A2-7; ; ; Innholdskontroll; ; <SIP uuid>.tar, info.xml, SIARD-uttrekk | Noark 5-uttrekk, dokumenter, sysdoc, report, ev. flere mapper og filer
+A2-8; ; ; Integritetssikring; ; <SIP uuid>.tar sjekksum validerer mot info.xml, lagret i <SIP uuid>.tar.sha256.txt
+
+# Del IV: Innsjekking arbeidsområde
+A3; ; ; Innsjekking depot; ; 
+A3-1; ; ; Data innhenting; ; Hentet <SIP uuid>.tar og info.xml som SIARD-uttrekk | Noark 5-uttrekk, dokumenter, sysdoc, report, ev. flere mapper og filer
+A3-1.1; ; ; Arbeidsområde mappestruktur; ; Kopiert standard mappestruktur
+A3-1.2; ; ; content fra karantenemedie; ; Kopiert
+A3-1.3; ; ; repository_operations fra karantenemedie; ; Kopiert
+A3-1.4; ; ; content elementer fra andre områder; ; 
+A3-1.5; ; ; repository_operations elementer fra andre områder; ; 
+
+A3-2; ; ; Integritetssikring; ; <SIP uuid>.tar sjekksum validerer mot info.xml, lagret i <SIP uuid>.tar.sha256.txt
+A3-3; ; ; Utpakking av SIP fra tar-format; ; \arkiv-work\15KK\15kk_nnn_E-15KK-20yy-00nn\content\sip\
+A3-4; ; ; Validering av xml mot DIAS skjemaer; ; 
+
+# Del V: Test og validering
+A4; ; ; Testing; ; 
+A4-1; ; ; Oppretting av test-logg; ;
+A4-2; ; ; Teknisk konsistens, korrekt og komplett; ;
+A4-3; ; ; Struktur og formatkrav; ;
+A4-4; ; ; Tekniske- og bevarings-metadata; ;
+A4-5; ; ; Sjekksummer i enkeltfiler; ; 
+
+# Del VI: Oppretting av Arkivpakke AIP
+A5; ; ; Oppretting av AIP; ; Arkivpakke AIP
+A5-1; ; ; Innsjekking til kontroll-område; ; 
+A3-2; ; ; Integritetssikring; ; 
+A3-4; ; ; Validering av xml mot DIAS skjemaer; ; 
+A5-2; ; ; Differanse-kontroll; ; 
+A5-3; ; ; Oppretting av Arkivpakke AIP; ; 
+
+# Del VII: Lagring av Arkivpakke AIP
+A6; ; ; Lagre ing av AIP; ; Arkivpakke AIP
+A6-1; ; ; Lagring i Depot / DSM; ; Bevart i depotforvaltningssystem
+A6-2; ; ; Tilbakemelding og opprydding; Godkjent | Avvist; IKAMR JPn Sendt tilbakemelding

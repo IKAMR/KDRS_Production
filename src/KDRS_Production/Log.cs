@@ -123,26 +123,29 @@ namespace KDRS_Production
             using (SQLiteConnection connection = new SQLiteConnection(dataSource))
             {
                 SQLiteCommand sqlite_cmd;
-                string tableName = "Event_log";
+                string tableName = "event_log";
                 connection.Open();
 
 
                 if (!TableExists(connection, tableName))
                 {
                     Console.WriteLine("Create table");
-                    string[] columns = { "ID", "TAG", "Timestamp", "Description", "Status", "Comments" };
+                    string[] columns = { "id", "tag", "timestamp", "description", "status", "comments" };
                     CreateTable(tableName, columns, connection);
                 }
 
                 string getID = "SELECT MAX(ID) FROM " + tableName + ";";
 
-                sqlite_cmd = connection.CreateCommand();
+                                sqlite_cmd = connection.CreateCommand();
                 sqlite_cmd.CommandText = getID;
                 logID = sqlite_cmd.ExecuteNonQuery();
 
+                if (logID.Equals(-1))
+                    logID = 1;
+
                 ev.ID = logID++;
 
-                string logCommand = "INSERT INTO " + tableName + "(ID, TAG, Timestamp, Description, Status, Comments) VALUES(\'" + ev.ID + "\',\' " + ev.Tag + "\',\' " + ev.TimeStamp +
+                string logCommand = "INSERT INTO " + tableName + "(id, tag, timestamp, description, status, comments) VALUES(\'" + ev.ID + "\',\' " + ev.Tag + "\',\' " + ev.TimeStamp +
                     "\',\' " + ev.Description + "\',\' " + ev.Status + "\',\' " + ev.Comments + "\'); ";
                 sqlite_cmd = connection.CreateCommand();
                 sqlite_cmd.CommandText = logCommand;
@@ -201,13 +204,85 @@ namespace KDRS_Production
             return false;
         }
 
+        //------------------------------------------------------------------------------
+
+        public void ExportLog(string dbPath, int logIncludes)
+        {
+            switch (logIncludes)
+            {
+                case 1:
+                    string logFileName = dbPath + "full_log.csv";
+
+                    break;
+
+            }
+        }
+
+        //-------------------------------------------------------------------------------
+
+        public void PrintAllLog(string dbPath, string logName)
+        {
+
+            if (!File.Exists(dbPath))
+            {
+                Console.WriteLine("Log file dosen't exist");
+
+            }
+
+            string dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+
+            Console.WriteLine("Data source: {0}", dataSource);
+
+            List<string> lines = new List<string>();
+
+
+            using (SQLiteConnection connection = new SQLiteConnection(dataSource))
+            {
+
+                SQLiteCommand sqlite_cmd;
+                SQLiteDataReader reader;
+                connection.Open();
+                Console.WriteLine("Connection open");
+
+                string getTables = "SELECT name FROM sqlite_master WHERE type='table'ORDER BY name;";
+
+                try
+                {
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = getTables;
+                    reader = sqlite_cmd.ExecuteReader();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Unable to execute query: {0}", getTables);
+                    throw e;
+                }
+
+                while (reader.Read())
+                {
+                    lines.AddRange(GetTableContent(connection, reader.GetValue(0).ToString()));
+                }
+
+            }
+            try
+            {
+                File.WriteAllLines(logName, lines);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unable to create file: {0}", logName);
+                throw e;
+            }
+        }
+
         //-------------------------------------------------------------------------------
 
         public void PrintInfoLog(string dbPath)
         {
             if (!File.Exists(dbPath))
             {
-                
+                    Console.WriteLine("Log file dosen't exist");
+
             }
 
             string newLogFile = dbPath + "log.csv";
@@ -223,6 +298,8 @@ namespace KDRS_Production
                 SQLiteDataReader reader;
                 string tableName = "info_xml";
                 connection.Open();
+                Console.WriteLine("Connection open");
+
 
                 string exportQuery = "SELECT name, value, edited_value FROM info_xml";
 
@@ -240,6 +317,8 @@ namespace KDRS_Production
                 List<string> lines = new List<string>();
 
                 //header
+                Console.WriteLine("Header");
+
                 string headerLine = "";
 
                 if (reader.Read())
@@ -254,6 +333,8 @@ namespace KDRS_Production
                 }
 
                 //data
+                Console.WriteLine("Data");
+
                 while (reader.Read())
                 {
                     object[] values = new object[reader.FieldCount];
@@ -265,12 +346,74 @@ namespace KDRS_Production
                 {
                     File.WriteAllLines(newLogFile, lines);
                 }
-                catch ()
+                catch (Exception e)
                 {
                     Console.WriteLine("Unable to create file: {0}", newLogFile);
-
+                    throw e;
                 }
             }
+        }
+        //-------------------------------------------------------------------------------
+
+        private List<string> GetTableContent(SQLiteConnection conn, string tableName)
+        {
+
+            List<string> lines = new List<string>();
+
+            string exportQuery = null;
+
+            SQLiteCommand sqlite_cmd;
+            SQLiteDataReader reader;
+            switch (tableName)
+            {
+                case "info_xml":
+                    exportQuery = "SELECT name, value, edited_value FROM info_xml;";
+                    break;
+
+                case "event_log":
+                    exportQuery = "SELECT id, tag, timestamp, description, status, comments FROM event_log;";
+                    break;
+            }
+
+            try
+            {
+                sqlite_cmd = conn.CreateCommand();
+                sqlite_cmd.CommandText = exportQuery;
+                reader = sqlite_cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unable to execute query: {0}", exportQuery);
+                throw e;
+            }
+
+            //header
+            Console.WriteLine("Header");
+
+            string headerLine = "";
+
+            if (reader.Read())
+            {
+                string[] columns = new string[reader.FieldCount];
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    columns[i] = reader.GetName(i);
+                }
+                headerLine = string.Join(",", columns);
+                lines.Add(headerLine);
+            }
+
+            //data
+            Console.WriteLine("Data");
+
+            while (reader.Read())
+            {
+                object[] values = new object[reader.FieldCount];
+                reader.GetValues(values);
+                lines.Add(string.Join(",", values));
+            }
+
+            return lines;
         }
     }
     //====================================================================================

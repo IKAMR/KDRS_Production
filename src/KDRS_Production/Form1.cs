@@ -101,6 +101,18 @@ namespace KDRS_Production
             if (dr == DialogResult.OK)
                 txtBxInfoXmlPath.Text = openFileDialog1.FileName;
         }
+
+        private void btnExpLog_Click(object sender, EventArgs e)
+        {
+            string targetPath = txtBxOutPath.Text;
+            Console.WriteLine("Exporting log");
+
+            string dbPath = targetPath + @"\repository_operations\log.sqlite";
+            string logNAme = targetPath + @"\repository_operations\full_log.csv";
+
+            logger.PrintAllLog(dbPath, logNAme);
+            //logger.PrintInfoLog(dbPath);
+        }
     }
     //====================================================================================================
     public static class Globals

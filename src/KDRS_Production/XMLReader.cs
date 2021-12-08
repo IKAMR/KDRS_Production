@@ -47,29 +47,29 @@ namespace KDRS_Production
             infoDict.Add("Submitter organization", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='ORGANIZATION']/mets:name/text()");
 
             infoDict.Add("Submitter individual", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:name/text()");
-            infoDict.Add("Submitter individual, adress", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()");
-            infoDict.Add("Submitter individual, email", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()");
-            infoDict.Add("Submitter individual, phone", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()");
+            infoDict.Add("Submitter individual adress", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()");
+            infoDict.Add("Submitter individual email", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()");
+            infoDict.Add("Submitter individual phone", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()");
 
             infoDict.Add("Producer organization", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='ORGANIZATION']/mets:name/text()");
             infoDict.Add("Producer individual", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:name/text()");
-            infoDict.Add("Producer individual, adress", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()");
-            infoDict.Add("Producer individual, phone", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()");
-            infoDict.Add("Producer individual, email", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()");
+            infoDict.Add("Producer individual adress", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()");
+            infoDict.Add("Producer individual phone", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()");
+            infoDict.Add("Producer individual email", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()");
 
             infoDict.Add("Ipowner organization", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='ORGANIZATION']/mets:name/text()");
 
             infoDict.Add("Ipowner individual", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:name/text()");
-            infoDict.Add("Ipowner individual, adress", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()");
-            infoDict.Add("Ipowner individual, phone", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()");
-            infoDict.Add("Ipowner individual, email", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()");
+            infoDict.Add("Ipowner individual adress", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()");
+            infoDict.Add("Ipowner individual phone", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()");
+            infoDict.Add("Ipowner individual email", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()");
 
             infoDict.Add("Creator organization", @"//mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/mets:name/text()");
 
             infoDict.Add("Creator individual", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:name/text()");
-            infoDict.Add("Creator individual, adress", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[1]/text()");
-            infoDict.Add("Creator individual, phone", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[2]/text()");
-            infoDict.Add("Creator individual, email", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[3]/text()");
+            infoDict.Add("Creator individual adress", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[1]/text()");
+            infoDict.Add("Creator individual phone", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[2]/text()");
+            infoDict.Add("Creator individual email", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[3]/text()");
 
             infoDict.Add("Creator software", @"//mets:agent[@ROLE='CREATOR' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:name/text()");
             infoDict.Add("Creator software version", @"//mets:agent[@ROLE='CREATOR' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[1]/text()");

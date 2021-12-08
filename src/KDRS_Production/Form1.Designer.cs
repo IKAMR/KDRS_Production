@@ -61,6 +61,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnSelectInfoXml = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
+            this.btnExpLog = new System.Windows.Forms.Button();
+            this.cmbBxLogContent = new System.Windows.Forms.ComboBox();
             this.pnlEventLog.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -233,6 +235,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(282, 356);
             this.panel1.TabIndex = 7;
+            this.panel1.Visible = false;
             // 
             // label8
             // 
@@ -356,11 +359,32 @@
             this.lblError.Size = new System.Drawing.Size(0, 13);
             this.lblError.TabIndex = 13;
             // 
+            // btnExpLog
+            // 
+            this.btnExpLog.Location = new System.Drawing.Point(651, 40);
+            this.btnExpLog.Name = "btnExpLog";
+            this.btnExpLog.Size = new System.Drawing.Size(137, 32);
+            this.btnExpLog.TabIndex = 14;
+            this.btnExpLog.Text = "Export log";
+            this.btnExpLog.UseVisualStyleBackColor = true;
+            this.btnExpLog.Click += new System.EventHandler(this.btnExpLog_Click);
+            // 
+            // cmbBxLogContent
+            // 
+            this.cmbBxLogContent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBxLogContent.FormattingEnabled = true;
+            this.cmbBxLogContent.Location = new System.Drawing.Point(651, 84);
+            this.cmbBxLogContent.Name = "cmbBxLogContent";
+            this.cmbBxLogContent.Size = new System.Drawing.Size(137, 21);
+            this.cmbBxLogContent.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 731);
+            this.Controls.Add(this.cmbBxLogContent);
+            this.Controls.Add(this.btnExpLog);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnSelectInfoXml);
             this.Controls.Add(this.txtBxInfoXmlPath);
@@ -421,6 +445,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnSelectInfoXml;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Button btnExpLog;
+        private System.Windows.Forms.ComboBox cmbBxLogContent;
     }
 }
 

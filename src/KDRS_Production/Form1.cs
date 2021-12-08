@@ -73,26 +73,30 @@ namespace KDRS_Production
 
         private void btnImportXml_Click(object sender, EventArgs e)
         {
-            string infoXmlPath = txtBxInfoXmlPath.Text;
-
-            xmlReader = new XMLInfoReader();
-
-            xmlReader.InfoXml(infoXmlPath);
-
-
-            infoList = xmlReader.InfoXmlImport(infoXmlPath);
-
-            foreach (InfoXml info in infoList)
+            if (String.IsNullOrEmpty(txtBxInfoXmlPath.Text))
             {
-                Console.WriteLine("{0} - {1} - {2}", info.ID, info.Name, info.Value);
+                lblError.Text = "Enter path to file";
+            } else {
+                string infoXmlPath = txtBxInfoXmlPath.Text;
 
-            }
+                xmlReader = new XMLInfoReader();
 
-            string targetPath = txtBxOutPath.Text;
+                xmlReader.InfoXml(infoXmlPath);
 
-            string dbPath = targetPath + @"\repository_operations\log.sqlite";
 
-            logger.LogInfoXml(dbPath, infoList);
+                infoList = xmlReader.InfoXmlImport(infoXmlPath);
+
+                foreach (InfoXml info in infoList)
+                {
+                    Console.WriteLine("{0} - {1} - {2}", info.ID, info.Name, info.Value);
+
+                }
+
+                string targetPath = txtBxOutPath.Text;
+
+                string dbPath = targetPath + @"\repository_operations\log.sqlite";
+
+                logger.LogInfoXml(dbPath, infoList); }
         }
 
         private void btnSelectInfoXml_Click(object sender, EventArgs e)

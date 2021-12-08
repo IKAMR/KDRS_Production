@@ -32,7 +32,6 @@ C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Data.SQLite
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Memory.xml
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Numerics.Vectors.xml
 C:\developer\c#\kdrs_production\src\KDRS_Production\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.csprojAssemblyReference.cache
 C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.Form1.resources
 C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.Properties.Resources.resources
 C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.csproj.GenerateResource.cache

@@ -382,7 +382,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 731);
+            this.ClientSize = new System.Drawing.Size(800, 805);
             this.Controls.Add(this.cmbBxLogContent);
             this.Controls.Add(this.btnExpLog);
             this.Controls.Add(this.lblError);

@@ -39,3 +39,5 @@ C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.cs
 C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.csproj.CopyComplete
 C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.exe
 C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.pdb
+C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.csprojAssemblyReference.cache
+C:\developer\c#\kdrs_production\src\KDRS_Production\obj\Debug\KDRS_Production.EditMetadata.resources

@@ -33,7 +33,7 @@ namespace KDRS_Production
 
             txtBxEventTime.Text = DateTime.Now.ToString("yyyy.MM.ddTHH:mm:ss");
 
-            cbBxStatus.Items.AddRange( new object[]
+            cbBxStatus.Items.AddRange(new object[]
             {
                 "",
                 "Godkjent",
@@ -53,14 +53,21 @@ namespace KDRS_Production
                 Tag = txtBxPackID.Text,
                 Description = txtBxDescription.Text,
                 Status = cbBxStatus.Text,
-                Comments= txtBxComments.Text
+                Comments = txtBxComments.Text
             };
 
             string targetPath = txtBxOutPath.Text;
 
             string dbPath = targetPath + @"\repository_operations\log.sqlite";
-
-            logger.LogEvent(dbPath, ev);
+            if (String.IsNullOrEmpty(txtBxOutPath.Text))
+            {
+                lblError.Text = "Enter path to work folder";
+            }
+            else
+            {
+                lblError.Text = "";
+                logger.LogEvent(dbPath, ev);
+            }
         }
 
         private void btnSaveMetadata_Click(object sender, EventArgs e)
@@ -68,7 +75,7 @@ namespace KDRS_Production
             string targetPath = txtBxOutPath.Text;
 
             string dbPath = targetPath + @"\repository_operations\log.sqlite";
-            logger.LogInfoXml(dbPath, infoList);
+           // logger.LogInfoXml(dbPath, infoList);
         }
 
         private void btnImportXml_Click(object sender, EventArgs e)
@@ -76,7 +83,15 @@ namespace KDRS_Production
             if (String.IsNullOrEmpty(txtBxInfoXmlPath.Text))
             {
                 lblError.Text = "Enter path to file";
-            } else {
+            }
+            else if (String.IsNullOrEmpty(txtBxOutPath.Text))
+            {
+                lblError.Text = "Enter path to work folder";
+            }
+            else
+            {
+                lblError.Text = "";
+
                 string infoXmlPath = txtBxInfoXmlPath.Text;
 
                 xmlReader = new XMLInfoReader();
@@ -96,7 +111,8 @@ namespace KDRS_Production
 
                 string dbPath = targetPath + @"\repository_operations\log.sqlite";
 
-                logger.LogInfoXml(dbPath, infoList); }
+                logger.LogInfoXml(dbPath, infoList);
+            }
         }
 
         private void btnSelectInfoXml_Click(object sender, EventArgs e)
@@ -108,14 +124,26 @@ namespace KDRS_Production
 
         private void btnExpLog_Click(object sender, EventArgs e)
         {
-            string targetPath = txtBxOutPath.Text;
-            Console.WriteLine("Exporting log");
+            if (String.IsNullOrEmpty(txtBxOutPath.Text))
+            {
+                lblError.Text = "Enter path to work folder";
+            }
+            else
+            {
+                lblError.Text = "";
+                string targetPath = txtBxOutPath.Text;
+                Console.WriteLine("Exporting log");
 
-            string dbPath = targetPath + @"\repository_operations\log.sqlite";
-            string logNAme = targetPath + @"\repository_operations\full_log.csv";
+                string dbPath = targetPath + @"\repository_operations\log.sqlite";
+                string logNAme = targetPath + @"\repository_operations\full_log.csv";
 
-            logger.PrintAllLog(dbPath, logNAme);
-            //logger.PrintInfoLog(dbPath);
+                logger.PrintAllLog(dbPath, logNAme);
+                //logger.PrintInfoLog(dbPath);
+            }
+        }
+
+        private void btnEditMeta_Click(object sender, EventArgs e)
+        {
         }
     }
     //====================================================================================================

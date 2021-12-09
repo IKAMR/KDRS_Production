@@ -108,6 +108,8 @@ namespace KDRS_Production
 
         public void LogEvent(string dbPath, Event ev)
         {
+            Console.WriteLine("Log event");
+
             int logID;
             if (!File.Exists(dbPath))
             {
@@ -122,9 +124,11 @@ namespace KDRS_Production
 
             using (SQLiteConnection connection = new SQLiteConnection(dataSource))
             {
+                
                 SQLiteCommand sqlite_cmd;
                 string tableName = "event_log";
                 connection.Open();
+                Console.WriteLine("Con open");
 
 
                 if (!TableExists(connection, tableName))
@@ -133,17 +137,23 @@ namespace KDRS_Production
                     string[] columns = { "id", "tag", "timestamp", "description", "status", "comments" };
                     CreateTable(tableName, columns, connection);
                 }
-
+                
                 string getID = "SELECT MAX(ID) FROM " + tableName + ";";
 
-                                sqlite_cmd = connection.CreateCommand();
+                Console.WriteLine("Get ID");
+
+                sqlite_cmd = connection.CreateCommand();
                 sqlite_cmd.CommandText = getID;
-                logID = sqlite_cmd.ExecuteNonQuery();
+                object logIDRes = sqlite_cmd.ExecuteScalar();
+                logID = Convert.ToInt32(logIDRes);
 
-                if (logID.Equals(-1))
-                    logID = 1;
+               // if (logID.Equals(-1) || logID.Equals(0))
+                 //   logID = 0;
+                
+                logID++;
+                ev.ID = logID;
+                Console.WriteLine("logID: {0}, ev.ID: {1}", logID, ev.ID);
 
-                ev.ID = logID++;
 
                 string logCommand = "INSERT INTO " + tableName + "(id, tag, timestamp, description, status, comments) VALUES(\'" + ev.ID + "\',\' " + ev.Tag + "\',\' " + ev.TimeStamp +
                     "\',\' " + ev.Description + "\',\' " + ev.Status + "\',\' " + ev.Comments + "\'); ";

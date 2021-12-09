@@ -53,7 +53,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.btnLogMeta = new System.Windows.Forms.Button();
+            this.btnEditMeta = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.txtBxPackageID = new System.Windows.Forms.TextBox();
             this.btnImportXml = new System.Windows.Forms.Button();
@@ -295,14 +295,15 @@
             this.textBox4.Size = new System.Drawing.Size(228, 20);
             this.textBox4.TabIndex = 0;
             // 
-            // btnLogMeta
+            // btnEditMeta
             // 
-            this.btnLogMeta.Location = new System.Drawing.Point(421, 194);
-            this.btnLogMeta.Name = "btnLogMeta";
-            this.btnLogMeta.Size = new System.Drawing.Size(102, 23);
-            this.btnLogMeta.TabIndex = 6;
-            this.btnLogMeta.Text = "Import Metadata";
-            this.btnLogMeta.UseVisualStyleBackColor = true;
+            this.btnEditMeta.Location = new System.Drawing.Point(109, 687);
+            this.btnEditMeta.Name = "btnEditMeta";
+            this.btnEditMeta.Size = new System.Drawing.Size(137, 33);
+            this.btnEditMeta.TabIndex = 6;
+            this.btnEditMeta.Text = "Edit Metadata";
+            this.btnEditMeta.UseVisualStyleBackColor = true;
+            this.btnEditMeta.Click += new System.EventHandler(this.btnEditMeta_Click);
             // 
             // label13
             // 
@@ -392,7 +393,7 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtBxPackageID);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnLogMeta);
+            this.Controls.Add(this.btnEditMeta);
             this.Controls.Add(this.pnlEventLog);
             this.Controls.Add(this.btnOpenEventLog);
             this.Controls.Add(this.label2);
@@ -437,7 +438,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox3;
         protected internal System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button btnLogMeta;
+        private System.Windows.Forms.Button btnEditMeta;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtBxPackageID;
         private System.Windows.Forms.Button btnImportXml;

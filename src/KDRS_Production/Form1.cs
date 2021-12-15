@@ -33,7 +33,7 @@ namespace KDRS_Production
             logger = new Log();
 
             //FOR DEV - TO BE REMOVED
-            txtBxOutPath.Text = @"C:\developer\c#\kdrs_production\doc";
+            //txtBxOutPath.Text = @"C:\developer\c#\kdrs_production\doc";
 
         }
 

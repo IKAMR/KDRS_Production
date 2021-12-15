@@ -34,8 +34,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnOpenEventLog = new System.Windows.Forms.Button();
             this.pnlEventLog = new System.Windows.Forms.Panel();
+            this.chkBxSelectFromTemplate = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtBxPackID = new System.Windows.Forms.TextBox();
+            this.txtBxLogTag = new System.Windows.Forms.TextBox();
             this.bntSaveEvent = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@
             this.txtBxComments = new System.Windows.Forms.TextBox();
             this.txtBxDescription = new System.Windows.Forms.TextBox();
             this.txtBxEventTime = new System.Windows.Forms.TextBox();
+            this.cbBxSelectEvent = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -111,8 +113,8 @@
             // 
             // pnlEventLog
             // 
+            this.pnlEventLog.Controls.Add(this.chkBxSelectFromTemplate);
             this.pnlEventLog.Controls.Add(this.label7);
-            this.pnlEventLog.Controls.Add(this.txtBxPackID);
             this.pnlEventLog.Controls.Add(this.bntSaveEvent);
             this.pnlEventLog.Controls.Add(this.label6);
             this.pnlEventLog.Controls.Add(this.label5);
@@ -122,11 +124,24 @@
             this.pnlEventLog.Controls.Add(this.txtBxComments);
             this.pnlEventLog.Controls.Add(this.txtBxDescription);
             this.pnlEventLog.Controls.Add(this.txtBxEventTime);
+            this.pnlEventLog.Controls.Add(this.cbBxSelectEvent);
+            this.pnlEventLog.Controls.Add(this.txtBxLogTag);
             this.pnlEventLog.Location = new System.Drawing.Point(109, 224);
             this.pnlEventLog.Name = "pnlEventLog";
-            this.pnlEventLog.Size = new System.Drawing.Size(235, 356);
+            this.pnlEventLog.Size = new System.Drawing.Size(235, 381);
             this.pnlEventLog.TabIndex = 5;
             this.pnlEventLog.Visible = false;
+            // 
+            // chkBxSelectFromTemplate
+            // 
+            this.chkBxSelectFromTemplate.AutoSize = true;
+            this.chkBxSelectFromTemplate.Location = new System.Drawing.Point(109, 56);
+            this.chkBxSelectFromTemplate.Name = "chkBxSelectFromTemplate";
+            this.chkBxSelectFromTemplate.Size = new System.Drawing.Size(122, 17);
+            this.chkBxSelectFromTemplate.TabIndex = 11;
+            this.chkBxSelectFromTemplate.Text = "Select from template";
+            this.chkBxSelectFromTemplate.UseVisualStyleBackColor = true;
+            this.chkBxSelectFromTemplate.CheckedChanged += new System.EventHandler(this.chkBxSelectFromTemplate_CheckedChanged);
             // 
             // label7
             // 
@@ -137,16 +152,16 @@
             this.label7.TabIndex = 10;
             this.label7.Text = "Log Tag";
             // 
-            // txtBxPackID
+            // txtBxLogTag
             // 
-            this.txtBxPackID.Location = new System.Drawing.Point(4, 30);
-            this.txtBxPackID.Name = "txtBxPackID";
-            this.txtBxPackID.Size = new System.Drawing.Size(228, 20);
-            this.txtBxPackID.TabIndex = 9;
+            this.txtBxLogTag.Location = new System.Drawing.Point(4, 30);
+            this.txtBxLogTag.Name = "txtBxLogTag";
+            this.txtBxLogTag.Size = new System.Drawing.Size(228, 20);
+            this.txtBxLogTag.TabIndex = 9;
             // 
             // bntSaveEvent
             // 
-            this.bntSaveEvent.Location = new System.Drawing.Point(4, 318);
+            this.bntSaveEvent.Location = new System.Drawing.Point(4, 333);
             this.bntSaveEvent.Name = "bntSaveEvent";
             this.bntSaveEvent.Size = new System.Drawing.Size(117, 23);
             this.bntSaveEvent.TabIndex = 8;
@@ -157,7 +172,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 226);
+            this.label6.Location = new System.Drawing.Point(4, 241);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 7;
@@ -166,7 +181,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 169);
+            this.label5.Location = new System.Drawing.Point(4, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 6;
@@ -175,7 +190,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 116);
+            this.label4.Location = new System.Drawing.Point(4, 131);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 5;
@@ -184,7 +199,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 64);
+            this.label3.Location = new System.Drawing.Point(4, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 4;
@@ -194,14 +209,14 @@
             // 
             this.cbBxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBxStatus.FormattingEnabled = true;
-            this.cbBxStatus.Location = new System.Drawing.Point(4, 188);
+            this.cbBxStatus.Location = new System.Drawing.Point(4, 203);
             this.cbBxStatus.Name = "cbBxStatus";
             this.cbBxStatus.Size = new System.Drawing.Size(228, 21);
             this.cbBxStatus.TabIndex = 3;
             // 
             // txtBxComments
             // 
-            this.txtBxComments.Location = new System.Drawing.Point(4, 245);
+            this.txtBxComments.Location = new System.Drawing.Point(4, 260);
             this.txtBxComments.Multiline = true;
             this.txtBxComments.Name = "txtBxComments";
             this.txtBxComments.Size = new System.Drawing.Size(227, 65);
@@ -209,17 +224,28 @@
             // 
             // txtBxDescription
             // 
-            this.txtBxDescription.Location = new System.Drawing.Point(4, 132);
+            this.txtBxDescription.Location = new System.Drawing.Point(4, 147);
             this.txtBxDescription.Name = "txtBxDescription";
             this.txtBxDescription.Size = new System.Drawing.Size(228, 20);
             this.txtBxDescription.TabIndex = 1;
             // 
             // txtBxEventTime
             // 
-            this.txtBxEventTime.Location = new System.Drawing.Point(4, 82);
+            this.txtBxEventTime.Location = new System.Drawing.Point(4, 97);
             this.txtBxEventTime.Name = "txtBxEventTime";
             this.txtBxEventTime.Size = new System.Drawing.Size(228, 20);
             this.txtBxEventTime.TabIndex = 0;
+            // 
+            // cbBxSelectEvent
+            // 
+            this.cbBxSelectEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBxSelectEvent.FormattingEnabled = true;
+            this.cbBxSelectEvent.Location = new System.Drawing.Point(4, 30);
+            this.cbBxSelectEvent.Name = "cbBxSelectEvent";
+            this.cbBxSelectEvent.Size = new System.Drawing.Size(228, 21);
+            this.cbBxSelectEvent.TabIndex = 16;
+            this.cbBxSelectEvent.Visible = false;
+            this.cbBxSelectEvent.SelectedIndexChanged += new System.EventHandler(this.cbBxSelectEvent_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -297,7 +323,7 @@
             // 
             // btnEditMeta
             // 
-            this.btnEditMeta.Location = new System.Drawing.Point(109, 687);
+            this.btnEditMeta.Location = new System.Drawing.Point(109, 703);
             this.btnEditMeta.Name = "btnEditMeta";
             this.btnEditMeta.Size = new System.Drawing.Size(137, 33);
             this.btnEditMeta.TabIndex = 6;
@@ -323,7 +349,7 @@
             // 
             // btnImportXml
             // 
-            this.btnImportXml.Location = new System.Drawing.Point(109, 650);
+            this.btnImportXml.Location = new System.Drawing.Point(109, 666);
             this.btnImportXml.Name = "btnImportXml";
             this.btnImportXml.Size = new System.Drawing.Size(137, 31);
             this.btnImportXml.TabIndex = 10;
@@ -333,7 +359,7 @@
             // 
             // txtBxInfoXmlPath
             // 
-            this.txtBxInfoXmlPath.Location = new System.Drawing.Point(109, 624);
+            this.txtBxInfoXmlPath.Location = new System.Drawing.Point(109, 640);
             this.txtBxInfoXmlPath.Name = "txtBxInfoXmlPath";
             this.txtBxInfoXmlPath.Size = new System.Drawing.Size(502, 20);
             this.txtBxInfoXmlPath.TabIndex = 11;
@@ -344,7 +370,7 @@
             // 
             // btnSelectInfoXml
             // 
-            this.btnSelectInfoXml.Location = new System.Drawing.Point(109, 595);
+            this.btnSelectInfoXml.Location = new System.Drawing.Point(109, 611);
             this.btnSelectInfoXml.Name = "btnSelectInfoXml";
             this.btnSelectInfoXml.Size = new System.Drawing.Size(137, 23);
             this.btnSelectInfoXml.TabIndex = 12;
@@ -355,10 +381,11 @@
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(106, 707);
+            this.lblError.Location = new System.Drawing.Point(109, 750);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 13);
+            this.lblError.Size = new System.Drawing.Size(54, 13);
             this.lblError.TabIndex = 13;
+            this.lblError.Text = "Error label";
             // 
             // btnExpLog
             // 
@@ -429,7 +456,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button bntSaveEvent;
         private System.Windows.Forms.Label label7;
-        protected internal System.Windows.Forms.TextBox txtBxPackID;
+        protected internal System.Windows.Forms.TextBox txtBxLogTag;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label8;
         protected internal System.Windows.Forms.TextBox textBox1;
@@ -448,6 +475,8 @@
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Button btnExpLog;
         private System.Windows.Forms.ComboBox cmbBxLogContent;
+        private System.Windows.Forms.CheckBox chkBxSelectFromTemplate;
+        private System.Windows.Forms.ComboBox cbBxSelectEvent;
     }
 }
 

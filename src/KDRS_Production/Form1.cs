@@ -14,8 +14,15 @@ namespace KDRS_Production
     {
         Log logger;
         XMLInfoReader xmlReader;
+        CsvReader csvReader;
 
         List<InfoXml> infoList;
+
+        string infoXmlPath = String.Empty;
+        string dbPath = String.Empty;
+
+        bool fromTemplate = false;
+        DataTable templateData;
 
         public Form1()
         {
@@ -25,22 +32,41 @@ namespace KDRS_Production
 
             logger = new Log();
 
+            //FOR DEV - TO BE REMOVED
+            txtBxOutPath.Text = @"C:\developer\c#\kdrs_production\doc";
+
         }
 
         private void btnOpenEventLog_Click(object sender, EventArgs e)
         {
-            pnlEventLog.Visible = true;
-
-            txtBxEventTime.Text = DateTime.Now.ToString("yyyy.MM.ddTHH:mm:ss");
-
-            cbBxStatus.Items.AddRange(new object[]
+            if (String.IsNullOrEmpty(txtBxOutPath.Text))
             {
+                lblError.Text = "Enter path to work folder";
+            }
+            else
+            {
+                pnlEventLog.Visible = true;
+
+                txtBxEventTime.Text = DateTime.Now.ToString("yyyy.MM.ddTHH:mm:ss");
+
+                cbBxStatus.Items.AddRange(new object[]
+                {
                 "",
                 "Godkjent",
                 "Godkjent med avvik",
                 "Avvik",
                 "Avvist"
-            });
+                });
+
+                string targetPath = txtBxOutPath.Text;
+                string logTemplate = targetPath + @"\repository_operations\templates\15KK_nnn_A_depot-log_v1.9_template_2.txt";
+
+                csvReader = new CsvReader();
+
+
+                templateData = csvReader.ConvertCSVtoDataTable(logTemplate);
+            }
+ 
         }
 
         private void bntSaveEvent_Click(object sender, EventArgs e)
@@ -50,7 +76,7 @@ namespace KDRS_Production
             Event ev = new Event
             {
                 TimeStamp = txtBxEventTime.Text,
-                Tag = txtBxPackID.Text,
+                Tag = txtBxLogTag.Text,
                 Description = txtBxDescription.Text,
                 Status = cbBxStatus.Text,
                 Comments = txtBxComments.Text
@@ -58,7 +84,7 @@ namespace KDRS_Production
 
             string targetPath = txtBxOutPath.Text;
 
-            string dbPath = targetPath + @"\repository_operations\log.sqlite";
+            dbPath = targetPath + @"\repository_operations\log.sqlite";
             if (String.IsNullOrEmpty(txtBxOutPath.Text))
             {
                 lblError.Text = "Enter path to work folder";
@@ -74,7 +100,7 @@ namespace KDRS_Production
         {
             string targetPath = txtBxOutPath.Text;
 
-            string dbPath = targetPath + @"\repository_operations\log.sqlite";
+            dbPath = targetPath + @"\repository_operations\log.sqlite";
            // logger.LogInfoXml(dbPath, infoList);
         }
 
@@ -92,11 +118,11 @@ namespace KDRS_Production
             {
                 lblError.Text = "";
 
-                string infoXmlPath = txtBxInfoXmlPath.Text;
+                infoXmlPath = txtBxInfoXmlPath.Text;
 
                 xmlReader = new XMLInfoReader();
 
-                xmlReader.InfoXml(infoXmlPath);
+                //xmlReader.InfoXml(infoXmlPath);
 
 
                 infoList = xmlReader.InfoXmlImport(infoXmlPath);
@@ -109,7 +135,7 @@ namespace KDRS_Production
 
                 string targetPath = txtBxOutPath.Text;
 
-                string dbPath = targetPath + @"\repository_operations\log.sqlite";
+                dbPath = targetPath + @"\repository_operations\log.sqlite";
 
                 logger.LogInfoXml(dbPath, infoList);
             }
@@ -134,7 +160,7 @@ namespace KDRS_Production
                 string targetPath = txtBxOutPath.Text;
                 Console.WriteLine("Exporting log");
 
-                string dbPath = targetPath + @"\repository_operations\log.sqlite";
+                dbPath = targetPath + @"\repository_operations\log.sqlite";
                 string logNAme = targetPath + @"\repository_operations\full_log.csv";
 
                 logger.PrintAllLog(dbPath, logNAme);
@@ -144,6 +170,48 @@ namespace KDRS_Production
 
         private void btnEditMeta_Click(object sender, EventArgs e)
         {
+            EditMetaForm EditForm = new EditMetaForm(infoXmlPath, dbPath);
+            EditForm.Show();
+        }
+
+        private void chkBxSelectFromTemplate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkBxSelectFromTemplate.Checked)
+            {
+                txtBxLogTag.Visible = false;
+                cbBxSelectEvent.Visible = true;
+                fromTemplate = true;
+
+                cbBxSelectEvent.DataSource = templateData;
+                cbBxSelectEvent.DisplayMember = "tag";
+            }
+            else
+            {
+                txtBxLogTag.Visible = true;
+                cbBxSelectEvent.Visible = false;
+                fromTemplate = false;
+            }
+        }
+
+        private void cbBxSelectEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedRow = "tag= '" + cbBxSelectEvent.Text + "'";
+                Console.WriteLine("Tag = {0}", selectedRow);
+                DataRow[] dr = templateData.Select(selectedRow);
+
+                foreach (DataRow row in dr)
+                {
+                    txtBxDescription.Text = row["description"].ToString();
+                    txtBxComments.Text = row["comments"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
     //====================================================================================================

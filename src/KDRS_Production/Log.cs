@@ -15,14 +15,13 @@ namespace KDRS_Production
     {
 
         //-------------------------------------------------------------------------------
-
         public void LogInfoXml(string dbPath, List<InfoXml> infoXml)
         {
             if (!File.Exists(dbPath))
             {
                 SQLiteConnection.CreateFile(dbPath);
-
             }
+
             string dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
 
             Console.WriteLine("Data source: {0}", dataSource);
@@ -33,21 +32,12 @@ namespace KDRS_Production
                 string tableName = "info_xml";
                 connection.Open();
 
-
                 if (!TableExists(connection, tableName))
                 {
                     Console.WriteLine("Create table");
                     string[] columns = { "id", "name", "value", "edited_value"};
                     CreateTable(tableName, columns, connection);
                 }
-
-                /*string getID = "SELECT MAX(ID) FROM " + tableName + ";";
-
-                sqlite_cmd = connection.CreateCommand();
-                sqlite_cmd.CommandText = getID;
-                logID = sqlite_cmd.ExecuteNonQuery();
-
-                ev.ID = logID++;*/
 
                 foreach (InfoXml info in infoXml)
                 {
@@ -92,12 +82,10 @@ namespace KDRS_Production
                     if (propertyInfo.PropertyType.Assembly == type.Assembly)
                     {
                         DisplayObject(value, pList);
-
                     }
                     else
                     {
                         pList.Add(propertyInfo);
-
                     }
                 }
             }
@@ -130,7 +118,6 @@ namespace KDRS_Production
                 connection.Open();
                 Console.WriteLine("Con open");
 
-
                 if (!TableExists(connection, tableName))
                 {
                     Console.WriteLine("Create table");
@@ -145,15 +132,14 @@ namespace KDRS_Production
                 sqlite_cmd = connection.CreateCommand();
                 sqlite_cmd.CommandText = getID;
                 object logIDRes = sqlite_cmd.ExecuteScalar();
-                logID = Convert.ToInt32(logIDRes);
+                if (logIDRes is DBNull)
+                    logID = 0;
+                else
+                    logID = Convert.ToInt32(logIDRes);
 
-               // if (logID.Equals(-1) || logID.Equals(0))
-                 //   logID = 0;
-                
                 logID++;
                 ev.ID = logID;
                 Console.WriteLine("logID: {0}, ev.ID: {1}", logID, ev.ID);
-
 
                 string logCommand = "INSERT INTO " + tableName + "(id, tag, timestamp, description, status, comments) VALUES(\'" + ev.ID + "\',\' " + ev.Tag + "\',\' " + ev.TimeStamp +
                     "\',\' " + ev.Description + "\',\' " + ev.Status + "\',\' " + ev.Comments + "\'); ";
@@ -161,7 +147,6 @@ namespace KDRS_Production
                 sqlite_cmd.CommandText = logCommand;
                 sqlite_cmd.ExecuteNonQuery();
             }
-
         }
         //-------------------------------------------------------------------------------
         static void CreateTable(string name, string[] colNames, SQLiteConnection conn)
@@ -224,7 +209,7 @@ namespace KDRS_Production
                     string logFileName = dbPath + "full_log.csv";
 
                     break;
-
+                //TODO: Other log combinations
             }
         }
 
@@ -236,7 +221,6 @@ namespace KDRS_Production
             if (!File.Exists(dbPath))
             {
                 Console.WriteLine("Log file dosen't exist");
-
             }
 
             string dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
@@ -245,10 +229,8 @@ namespace KDRS_Production
 
             List<string> lines = new List<string>();
 
-
             using (SQLiteConnection connection = new SQLiteConnection(dataSource))
             {
-
                 SQLiteCommand sqlite_cmd;
                 SQLiteDataReader reader;
                 connection.Open();
@@ -272,8 +254,8 @@ namespace KDRS_Production
                 {
                     lines.AddRange(GetTableContent(connection, reader.GetValue(0).ToString()));
                 }
-
             }
+
             try
             {
                 File.WriteAllLines(logName, lines);
@@ -367,7 +349,6 @@ namespace KDRS_Production
 
         private List<string> GetTableContent(SQLiteConnection conn, string tableName)
         {
-
             List<string> lines = new List<string>();
 
             string exportQuery = null;
@@ -434,7 +415,6 @@ namespace KDRS_Production
         public string WorkPath { get; set; }
         public string[] BackupPath { get; set; }
         public string LogFilePath { get; set; }
-
         public MetaData MetaData { get; set; }
 
     }
@@ -442,7 +422,6 @@ namespace KDRS_Production
 
     public class MetaData //ephorte??
     {
-
         public string AvtNr { get; set; }
 
         public string CreatorName { get; set; }
@@ -465,7 +444,6 @@ namespace KDRS_Production
         public string SystemVersion { get; set; }
         public string SystemType { get; set; }
         public string SystemTypeVersion { get; set; }
-
 
         public string ExtractionSystemName { get; set; }
         public string ExtractionSystemVersion { get; set; }
@@ -492,7 +470,6 @@ namespace KDRS_Production
         public string DepotReceiptSent { get; set; }
         public string DepotDeportedDate { get; set; }
         public string DepotDeportedID { get; set; }
-
     }
     //====================================================================================
 
@@ -525,7 +502,6 @@ namespace KDRS_Production
         public string ReceiptSent { get; set; }
         public string DeportedDate { get; set; }
         public string DeportedID { get; set; }
-
     }
     //====================================================================================
 
@@ -537,6 +513,5 @@ namespace KDRS_Production
         public string Description { get; set; }
         public string Status { get; set; }
         public string Comments { get; set; }
-
     }
 }

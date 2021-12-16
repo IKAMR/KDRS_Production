@@ -239,7 +239,6 @@ namespace KDRS_Production
             string nameSpaceXsi = infoXml.DocumentElement.GetNamespaceOfPrefix("xsi");
             string nameSpaceMets = infoXml.DocumentElement.GetNamespaceOfPrefix("mets");
 
-
             xPathCompiler.DeclareNamespace("", nameSpace);
             xPathCompiler.DeclareNamespace("xsi", nameSpaceXsi);
             xPathCompiler.DeclareNamespace("mets", nameSpaceMets);
@@ -278,6 +277,5 @@ namespace KDRS_Production
         public string Name;
         public string Query;
         public string Value;
-
     }
 }

@@ -403,7 +403,8 @@ namespace KDRS_Production
                 reader.GetValues(values);
                 lines.Add(string.Join(",", values));
             }
-
+            lines.Add("#---------------------------------------------");
+            lines.Add("");
             return lines;
         }
     }

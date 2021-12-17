@@ -20,6 +20,7 @@ namespace KDRS_Production
 
         string infoXmlPath = String.Empty;
         string dbPath = String.Empty;
+        //-------------------------------------------------------------------------------
 
         public EditMetaForm(string infoXmlPath, string dbPath)
         {
@@ -30,6 +31,7 @@ namespace KDRS_Production
 
             txtBxInfoXmlPath.Text = infoXmlPath;
         }
+        //-------------------------------------------------------------------------------
 
         private void btnSelectInfoXml_Click(object sender, EventArgs e)
         {
@@ -37,6 +39,7 @@ namespace KDRS_Production
             if (dr == DialogResult.OK)
                 txtBxInfoXmlPath.Text = openFileDialog1.FileName;
         }
+        //-------------------------------------------------------------------------------
 
         private void btnImportXml_Click(object sender, EventArgs e)
         {
@@ -74,17 +77,20 @@ namespace KDRS_Production
               //  logger.LogInfoXml(dbPath, infoList);
             }
         }
+        //-------------------------------------------------------------------------------
 
         private void btnEditMeta_Click(object sender, EventArgs e)
         {
             // TODO: Hvis noen av textBox er endret lag ny info.xml fil og lagre endring i log fil under 'edited_value'.
         }
+        //-------------------------------------------------------------------------------
 
         private void DisplayInfo()
         {
             // TODO: Legg til en tekstbox  og en label for hver info i infoList.
             
         }
+        //-------------------------------------------------------------------------------
 
         private void btnChooseWorkArea_Click(object sender, EventArgs e)
         {

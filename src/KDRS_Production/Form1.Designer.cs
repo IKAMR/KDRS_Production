@@ -34,9 +34,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnOpenEventLog = new System.Windows.Forms.Button();
             this.pnlEventLog = new System.Windows.Forms.Panel();
+            this.btnGetTimeStamp = new System.Windows.Forms.Button();
             this.chkBxSelectFromTemplate = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtBxLogTag = new System.Windows.Forms.TextBox();
             this.bntSaveEvent = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.txtBxDescription = new System.Windows.Forms.TextBox();
             this.txtBxEventTime = new System.Windows.Forms.TextBox();
             this.cbBxSelectEvent = new System.Windows.Forms.ComboBox();
+            this.txtBxLogTag = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -113,6 +114,7 @@
             // 
             // pnlEventLog
             // 
+            this.pnlEventLog.Controls.Add(this.btnGetTimeStamp);
             this.pnlEventLog.Controls.Add(this.chkBxSelectFromTemplate);
             this.pnlEventLog.Controls.Add(this.label7);
             this.pnlEventLog.Controls.Add(this.bntSaveEvent);
@@ -131,6 +133,17 @@
             this.pnlEventLog.Size = new System.Drawing.Size(235, 381);
             this.pnlEventLog.TabIndex = 5;
             this.pnlEventLog.Visible = false;
+            // 
+            // btnGetTimeStamp
+            // 
+            this.btnGetTimeStamp.Location = new System.Drawing.Point(148, 122);
+            this.btnGetTimeStamp.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGetTimeStamp.Name = "btnGetTimeStamp";
+            this.btnGetTimeStamp.Size = new System.Drawing.Size(83, 20);
+            this.btnGetTimeStamp.TabIndex = 17;
+            this.btnGetTimeStamp.Text = "Get timestamp";
+            this.btnGetTimeStamp.UseVisualStyleBackColor = true;
+            this.btnGetTimeStamp.Click += new System.EventHandler(this.btnGetTimeStamp_Click);
             // 
             // chkBxSelectFromTemplate
             // 
@@ -152,16 +165,9 @@
             this.label7.TabIndex = 10;
             this.label7.Text = "Log Tag";
             // 
-            // txtBxLogTag
-            // 
-            this.txtBxLogTag.Location = new System.Drawing.Point(4, 30);
-            this.txtBxLogTag.Name = "txtBxLogTag";
-            this.txtBxLogTag.Size = new System.Drawing.Size(228, 20);
-            this.txtBxLogTag.TabIndex = 9;
-            // 
             // bntSaveEvent
             // 
-            this.bntSaveEvent.Location = new System.Drawing.Point(4, 333);
+            this.bntSaveEvent.Location = new System.Drawing.Point(4, 345);
             this.bntSaveEvent.Name = "bntSaveEvent";
             this.bntSaveEvent.Size = new System.Drawing.Size(117, 23);
             this.bntSaveEvent.TabIndex = 8;
@@ -172,7 +178,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 241);
+            this.label6.Location = new System.Drawing.Point(4, 253);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 7;
@@ -181,7 +187,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 184);
+            this.label5.Location = new System.Drawing.Point(4, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 6;
@@ -190,7 +196,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 131);
+            this.label4.Location = new System.Drawing.Point(4, 143);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 5;
@@ -209,14 +215,14 @@
             // 
             this.cbBxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBxStatus.FormattingEnabled = true;
-            this.cbBxStatus.Location = new System.Drawing.Point(4, 203);
+            this.cbBxStatus.Location = new System.Drawing.Point(4, 215);
             this.cbBxStatus.Name = "cbBxStatus";
             this.cbBxStatus.Size = new System.Drawing.Size(228, 21);
             this.cbBxStatus.TabIndex = 3;
             // 
             // txtBxComments
             // 
-            this.txtBxComments.Location = new System.Drawing.Point(4, 260);
+            this.txtBxComments.Location = new System.Drawing.Point(4, 272);
             this.txtBxComments.Multiline = true;
             this.txtBxComments.Name = "txtBxComments";
             this.txtBxComments.Size = new System.Drawing.Size(227, 65);
@@ -224,7 +230,7 @@
             // 
             // txtBxDescription
             // 
-            this.txtBxDescription.Location = new System.Drawing.Point(4, 147);
+            this.txtBxDescription.Location = new System.Drawing.Point(4, 159);
             this.txtBxDescription.Name = "txtBxDescription";
             this.txtBxDescription.Size = new System.Drawing.Size(228, 20);
             this.txtBxDescription.TabIndex = 1;
@@ -246,6 +252,13 @@
             this.cbBxSelectEvent.TabIndex = 16;
             this.cbBxSelectEvent.Visible = false;
             this.cbBxSelectEvent.SelectedIndexChanged += new System.EventHandler(this.cbBxSelectEvent_SelectedIndexChanged);
+            // 
+            // txtBxLogTag
+            // 
+            this.txtBxLogTag.Location = new System.Drawing.Point(4, 30);
+            this.txtBxLogTag.Name = "txtBxLogTag";
+            this.txtBxLogTag.Size = new System.Drawing.Size(228, 20);
+            this.txtBxLogTag.TabIndex = 9;
             // 
             // panel1
             // 
@@ -381,6 +394,7 @@
             // lblError
             // 
             this.lblError.AutoSize = true;
+            this.lblError.ForeColor = System.Drawing.Color.Red;
             this.lblError.Location = new System.Drawing.Point(109, 750);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(54, 13);
@@ -477,6 +491,7 @@
         private System.Windows.Forms.ComboBox cmbBxLogContent;
         private System.Windows.Forms.CheckBox chkBxSelectFromTemplate;
         private System.Windows.Forms.ComboBox cbBxSelectEvent;
+        private System.Windows.Forms.Button btnGetTimeStamp;
     }
 }
 

@@ -142,8 +142,6 @@ namespace KDRS_Production
                 xPathDict.Add(key.Key, result);
             }
 
-           
-
             return xPathDict;
         }
 

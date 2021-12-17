@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,8 @@ namespace KDRS_Production
         string infoXmlPath = String.Empty;
         string dbPath = String.Empty;
 
-        bool fromTemplate = false;
         DataTable templateData;
+        //-------------------------------------------------------------------------------
 
         public Form1()
         {
@@ -33,9 +34,9 @@ namespace KDRS_Production
             logger = new Log();
 
             //FOR DEV - TO BE REMOVED
-            //txtBxOutPath.Text = @"C:\developer\c#\kdrs_production\doc";
-
+            txtBxOutPath.Text = @"C:\developer\c#\kdrs_production\doc";
         }
+        //-------------------------------------------------------------------------------
 
         private void btnOpenEventLog_Click(object sender, EventArgs e)
         {
@@ -46,8 +47,6 @@ namespace KDRS_Production
             else
             {
                 pnlEventLog.Visible = true;
-
-                txtBxEventTime.Text = DateTime.Now.ToString("yyyy.MM.ddTHH:mm:ss");
 
                 cbBxStatus.Items.AddRange(new object[]
                 {
@@ -63,16 +62,13 @@ namespace KDRS_Production
 
                 csvReader = new CsvReader();
 
-
                 templateData = csvReader.ConvertCSVtoDataTable(logTemplate);
             }
- 
         }
+        //-------------------------------------------------------------------------------
 
         private void bntSaveEvent_Click(object sender, EventArgs e)
         {
-
-
             Event ev = new Event
             {
                 TimeStamp = txtBxEventTime.Text,
@@ -95,6 +91,7 @@ namespace KDRS_Production
                 logger.LogEvent(dbPath, ev);
             }
         }
+        //-------------------------------------------------------------------------------
 
         private void btnSaveMetadata_Click(object sender, EventArgs e)
         {
@@ -103,6 +100,7 @@ namespace KDRS_Production
             dbPath = targetPath + @"\repository_operations\log.sqlite";
            // logger.LogInfoXml(dbPath, infoList);
         }
+        //-------------------------------------------------------------------------------
 
         private void btnImportXml_Click(object sender, EventArgs e)
         {
@@ -130,7 +128,6 @@ namespace KDRS_Production
                 foreach (InfoXml info in infoList)
                 {
                     Console.WriteLine("{0} - {1} - {2}", info.ID, info.Name, info.Value);
-
                 }
 
                 string targetPath = txtBxOutPath.Text;
@@ -140,6 +137,7 @@ namespace KDRS_Production
                 logger.LogInfoXml(dbPath, infoList);
             }
         }
+        //-------------------------------------------------------------------------------
 
         private void btnSelectInfoXml_Click(object sender, EventArgs e)
         {
@@ -147,6 +145,7 @@ namespace KDRS_Production
             if (dr == DialogResult.OK)
                 txtBxInfoXmlPath.Text = openFileDialog1.FileName;
         }
+        //-------------------------------------------------------------------------------
 
         private void btnExpLog_Click(object sender, EventArgs e)
         {
@@ -163,16 +162,22 @@ namespace KDRS_Production
                 dbPath = targetPath + @"\repository_operations\log.sqlite";
                 string logNAme = targetPath + @"\repository_operations\full_log.csv";
 
-                logger.PrintAllLog(dbPath, logNAme);
+                if (!File.Exists(dbPath))
+                {
+                    lblError.Text = "Cannot find Log file: " +  dbPath;
+                }else
+                    logger.PrintAllLog(dbPath, logNAme);
                 //logger.PrintInfoLog(dbPath);
             }
         }
+        //-------------------------------------------------------------------------------
 
         private void btnEditMeta_Click(object sender, EventArgs e)
         {
             EditMetaForm EditForm = new EditMetaForm(infoXmlPath, dbPath);
             EditForm.Show();
         }
+        //-------------------------------------------------------------------------------
 
         private void chkBxSelectFromTemplate_CheckedChanged(object sender, EventArgs e)
         {
@@ -180,7 +185,6 @@ namespace KDRS_Production
             {
                 txtBxLogTag.Visible = false;
                 cbBxSelectEvent.Visible = true;
-                fromTemplate = true;
 
                 cbBxSelectEvent.DataSource = templateData;
                 cbBxSelectEvent.DisplayMember = "tag";
@@ -189,9 +193,9 @@ namespace KDRS_Production
             {
                 txtBxLogTag.Visible = true;
                 cbBxSelectEvent.Visible = false;
-                fromTemplate = false;
             }
         }
+        //-------------------------------------------------------------------------------
 
         private void cbBxSelectEvent_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -205,14 +209,23 @@ namespace KDRS_Production
                 {
                     txtBxDescription.Text = row["description"].ToString();
                     txtBxComments.Text = row["comments"].ToString();
+                    txtBxLogTag.Text = cbBxSelectEvent.Text;
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
         }
+        //-------------------------------------------------------------------------------
+
+        private void btnGetTimeStamp_Click(object sender, EventArgs e)
+        {
+            txtBxEventTime.Text = DateTime.Now.ToString("yyyy.MM.ddTHH:mm:ss");
+        }
+
+        //-------------------------------------------------------------------------------
+
     }
     //====================================================================================================
     public static class Globals

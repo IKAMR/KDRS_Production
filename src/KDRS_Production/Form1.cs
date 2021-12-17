@@ -186,8 +186,20 @@ namespace KDRS_Production
                 txtBxLogTag.Visible = false;
                 cbBxSelectEvent.Visible = true;
 
+                DataColumn tagDesc = templateData.Columns.Add("tagdesc", typeof(String));
+  
+
+                var templateDict = new Dictionary<string, string>();
+                foreach (DataRow rw in templateData.Rows)
+                {
+                    rw["tagdesc"] = rw["tag"] + " " + rw["description"];
+                  //  templateDict.Add(rw["tag"].ToString(), rw["tag"].ToString() + " " + rw["description"].ToString());
+                }
+
                 cbBxSelectEvent.DataSource = templateData;
-                cbBxSelectEvent.DisplayMember = "tag";
+                cbBxSelectEvent.ValueMember = "tag";
+                cbBxSelectEvent.DisplayMember = "tagdesc";
+
             }
             else
             {
@@ -201,7 +213,7 @@ namespace KDRS_Production
         {
             try
             {
-                string selectedRow = "tag= '" + cbBxSelectEvent.Text + "'";
+                string selectedRow = "tag= '" + cbBxSelectEvent.SelectedValue + "'";
                 Console.WriteLine("Tag = {0}", selectedRow);
                 DataRow[] dr = templateData.Select(selectedRow);
 
@@ -209,7 +221,7 @@ namespace KDRS_Production
                 {
                     txtBxDescription.Text = row["description"].ToString();
                     txtBxComments.Text = row["comments"].ToString();
-                    txtBxLogTag.Text = cbBxSelectEvent.Text;
+                    txtBxLogTag.Text = cbBxSelectEvent.SelectedValue.ToString();
                 }
             }
             catch (Exception ex)
@@ -231,7 +243,7 @@ namespace KDRS_Production
     public static class Globals
     {
         public static readonly String toolName = "KDRS Production";
-        public static readonly String toolVersion = "0.2";
+        public static readonly String toolVersion = "0.2-RC4";
     }
 
 }

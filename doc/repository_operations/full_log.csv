@@ -2,6 +2,12 @@ id,tag,timestamp,description,status,comments
 2, , 2021.12.16T10:02:41,  Mottakskontroll, ,  test
 3, A1-4, ,  Samle opplysninger, ,  IKAMR JPn Arkivskaper/Produsent/ <system> Informasjon om innlevering
 4, A2-3.1.a, 2021.12.17T14:42:19,  Opprette mappestruktur på karantenemedie, Godkjent med avvik,  Standard mappestruktur (med depot logg)
+5, , ,  Forberedelse deponering, ,  test
+6, , ,  Forberedelse deponering, ,  test
+7, , , , , test
+8, A2-2, ,  Oppretting av depot-logg, ,  15KK_nnn_depot-log.txt
+
+test
 #---------------------------------------------
 
 name,value,edited_value

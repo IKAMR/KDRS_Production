@@ -38,6 +38,17 @@ namespace KDRS_Production
                     string[] columns = { "id", "name", "value", "edited_value"};
                     CreateTable(tableName, columns, connection);
                 }
+                else
+                {
+                    string logCommand = "DROP Table '" + tableName + "'";
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = logCommand;
+                    sqlite_cmd.ExecuteNonQuery();
+
+                    string[] columns = { "id", "name", "value", "edited_value" };
+                    CreateTable(tableName, columns, connection);
+
+                }
 
                 foreach (InfoXml info in infoXml)
                 {
@@ -192,10 +203,11 @@ namespace KDRS_Production
 
             sqlite_cmd = conn.CreateCommand();
             sqlite_cmd.CommandText = getTables;
-            SQLiteDataReader reader = sqlite_cmd.ExecuteReader();
-
-            if (reader.HasRows)
-                return true;
+            using (SQLiteDataReader reader = sqlite_cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                    return true;
+            }
             return false;
         }
 

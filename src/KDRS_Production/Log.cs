@@ -13,6 +13,7 @@ namespace KDRS_Production
 {
     public class Log
     {
+        string dataSource;
 
         //-------------------------------------------------------------------------------
         public void LogInfoXml(string dbPath, List<InfoXml> infoXml)
@@ -20,9 +21,32 @@ namespace KDRS_Production
             if (!File.Exists(dbPath))
             {
                 SQLiteConnection.CreateFile(dbPath);
+
+                SQLiteConnection.CreateFile(dbPath);
+
+                dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+
+                Console.WriteLine("Data source: {0}", dataSource);
+
+                using (SQLiteConnection connection = new SQLiteConnection(dataSource))
+                {
+
+                    SQLiteCommand sqlite_cmd;
+                    connection.Open();
+                    Console.WriteLine("Con open");
+
+                    string systable = "sysinfo";
+                    string[] colum = { "date", "version" };
+                    CreateTable(systable, colum, connection);
+
+                    string sysCommand = "INSERT INTO " + systable + "(date, version) VALUES (\'" + DateTime.Now + "\',\' " + Globals.toolVersion + "\');";
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = sysCommand;
+                    sqlite_cmd.ExecuteNonQuery();
+                }
             }
 
-            string dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+            dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
 
             Console.WriteLine("Data source: {0}", dataSource);
 
@@ -107,6 +131,7 @@ namespace KDRS_Production
 
         public void LogEvent(string dbPath, Event ev)
         {
+
             Console.WriteLine("Log event");
 
             int logID;
@@ -115,9 +140,30 @@ namespace KDRS_Production
                 Console.WriteLine("creating db");
 
                 SQLiteConnection.CreateFile(dbPath);
+
+                dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+
+                Console.WriteLine("Data source: {0}", dataSource);
+
+                using (SQLiteConnection connection = new SQLiteConnection(dataSource))
+                {
+
+                    SQLiteCommand sqlite_cmd;
+                    connection.Open();
+                    Console.WriteLine("Con open");
+
+                    string systable = "sysinfo";
+                    string[] colum = { "date", "version" };
+                    CreateTable(systable, colum, connection);
+
+                    string sysCommand = "INSERT INTO " + systable + "(date, version) VALUES (\'" + DateTime.Now + "\',\' " + Globals.toolVersion + "\');";
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = sysCommand;
+                    sqlite_cmd.ExecuteNonQuery();
+                }
             }
 
-            string dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+            dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
 
             Console.WriteLine("Data source: {0}", dataSource);
 
@@ -376,6 +422,10 @@ namespace KDRS_Production
                 case "event_log":
                     exportQuery = "SELECT id, tag, timestamp, description, status, comments FROM event_log;";
                     break;
+
+                case "sysinfo":
+                    exportQuery = "SELECT date, version FROM sysinfo;";
+                    break;
             }
 
             try
@@ -409,9 +459,13 @@ namespace KDRS_Production
             //data
             Console.WriteLine("Data");
 
+            object[] values = new object[reader.FieldCount];
+            reader.GetValues(values);
+            lines.Add(string.Join(",", values));
+
             while (reader.Read())
             {
-                object[] values = new object[reader.FieldCount];
+                values = new object[reader.FieldCount];
                 reader.GetValues(values);
                 lines.Add(string.Join(",", values));
             }

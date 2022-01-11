@@ -16,12 +16,11 @@ namespace KDRS_Production
         string dataSource;
 
         //-------------------------------------------------------------------------------
+        // Insert data from info.xml into SQLite table, table name is 'info_xml'.
         public void LogInfoXml(string dbPath, List<InfoXml> infoXml)
         {
             if (!File.Exists(dbPath))
             {
-                SQLiteConnection.CreateFile(dbPath);
-
                 SQLiteConnection.CreateFile(dbPath);
 
                 dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
@@ -85,6 +84,30 @@ namespace KDRS_Production
             }
         }
         //-------------------------------------------------------------------------------
+        // Insert edited data from info.xml into SQLite table, table name is 'info_xml', column is 'edited_value'.
+        public void LogEditInfoXml(string dbPath, List<InfoXml> editInfoXml)
+        {
+
+            dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+
+            Console.WriteLine("Data source: {0}", dataSource);
+
+            using (SQLiteConnection connection = new SQLiteConnection(dataSource))
+            {
+                SQLiteCommand sqlite_cmd;
+                string tableName = "info_xml";
+                connection.Open();
+
+                foreach (InfoXml editInfo in editInfoXml)
+                {
+                    string logCommand = "UPDATE " + tableName + " SET edited_value = \'" + editInfo.Value + "\' WHERE id = \'" + editInfo.ID + "\'; ";
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = logCommand;
+                    sqlite_cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        //-------------------------------------------------------------------------------
 
         private object GetObject(object ob)
         {
@@ -128,10 +151,9 @@ namespace KDRS_Production
         }
 
         //-------------------------------------------------------------------------------
-
+        // Insert an event into a SQLite table, table name is 'event_log'.
         public void LogEvent(string dbPath, Event ev)
         {
-
             Console.WriteLine("Log event");
 
             int logID;
@@ -147,7 +169,6 @@ namespace KDRS_Production
 
                 using (SQLiteConnection connection = new SQLiteConnection(dataSource))
                 {
-
                     SQLiteCommand sqlite_cmd;
                     connection.Open();
                     Console.WriteLine("Con open");
@@ -169,7 +190,6 @@ namespace KDRS_Production
 
             using (SQLiteConnection connection = new SQLiteConnection(dataSource))
             {
-                
                 SQLiteCommand sqlite_cmd;
                 string tableName = "event_log";
                 connection.Open();
@@ -490,7 +510,7 @@ namespace KDRS_Production
     public class MetaData //ephorte??
     {
         public string AvtNr { get; set; }
-
+        
         public string CreatorName { get; set; }
         public string CreatorContactPers { get; set; }
         public string CreatorAdress { get; set; }
@@ -539,7 +559,6 @@ namespace KDRS_Production
         public string DepotDeportedID { get; set; }
     }
     //====================================================================================
-
     public class Contact
     {
         public string Name { get; set; }
@@ -549,7 +568,6 @@ namespace KDRS_Production
         public string Email { get; set; }
     }
     //====================================================================================
-
     public class Software
     {
         public string Name { get; set; }
@@ -558,7 +576,7 @@ namespace KDRS_Production
         public string TypeVersion { get; set; }
     }
     //====================================================================================
-
+    
     public class Depot
     {
         public string DealSent { get; set; }

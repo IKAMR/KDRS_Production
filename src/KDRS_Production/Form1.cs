@@ -146,7 +146,7 @@ namespace KDRS_Production
                 txtBxInfoXmlPath.Text = openFileDialog1.FileName;
         }
         //-------------------------------------------------------------------------------
-
+        // Export log db to a csv file.
         private void btnExpLog_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtBxOutPath.Text))
@@ -171,14 +171,14 @@ namespace KDRS_Production
             }
         }
         //-------------------------------------------------------------------------------
-
+        // Opens new form for editing info.xml metadata.
         private void btnEditMeta_Click(object sender, EventArgs e)
         {
-            EditMetaForm EditForm = new EditMetaForm(infoXmlPath, dbPath);
+            EditMetaForm EditForm = new EditMetaForm(infoXmlPath, dbPath, infoList);
             EditForm.Show();
         }
         //-------------------------------------------------------------------------------
-
+        // Checkiung checkbox changes Log tag textbox to drop down meny with suggested tags read from template file.
         private void chkBxSelectFromTemplate_CheckedChanged(object sender, EventArgs e)
         {
             if (chkBxSelectFromTemplate.Checked)

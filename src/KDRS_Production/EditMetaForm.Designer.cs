@@ -32,13 +32,13 @@
             this.btnSelectInfoXml = new System.Windows.Forms.Button();
             this.txtBxInfoXmlPath = new System.Windows.Forms.TextBox();
             this.btnImportXml = new System.Windows.Forms.Button();
-            this.btnEditMeta = new System.Windows.Forms.Button();
+            this.btnSaveMeta = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnLogEdit = new System.Windows.Forms.Button();
             this.txtBxWorkArea = new System.Windows.Forms.TextBox();
             this.btnChooseWorkArea = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlInfo = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // lblError
@@ -77,15 +77,16 @@
             this.btnImportXml.UseVisualStyleBackColor = true;
             this.btnImportXml.Click += new System.EventHandler(this.btnImportXml_Click);
             // 
-            // btnEditMeta
+            // btnSaveMeta
             // 
-            this.btnEditMeta.Location = new System.Drawing.Point(12, 107);
-            this.btnEditMeta.Name = "btnEditMeta";
-            this.btnEditMeta.Size = new System.Drawing.Size(137, 33);
-            this.btnEditMeta.TabIndex = 14;
-            this.btnEditMeta.Text = "Edit Metadata";
-            this.btnEditMeta.UseVisualStyleBackColor = true;
-            this.btnEditMeta.Click += new System.EventHandler(this.btnEditMeta_Click);
+            this.btnSaveMeta.Enabled = false;
+            this.btnSaveMeta.Location = new System.Drawing.Point(12, 107);
+            this.btnSaveMeta.Name = "btnSaveMeta";
+            this.btnSaveMeta.Size = new System.Drawing.Size(137, 33);
+            this.btnSaveMeta.TabIndex = 14;
+            this.btnSaveMeta.Text = "Save changes";
+            this.btnSaveMeta.UseVisualStyleBackColor = true;
+            this.btnSaveMeta.Click += new System.EventHandler(this.btnSaveMeta_Click);
             // 
             // openFileDialog1
             // 
@@ -117,19 +118,20 @@
             this.btnChooseWorkArea.UseVisualStyleBackColor = true;
             this.btnChooseWorkArea.Click += new System.EventHandler(this.btnChooseWorkArea_Click);
             // 
-            // panel1
+            // pnlInfo
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 199);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(648, 239);
-            this.panel1.TabIndex = 22;
+            this.pnlInfo.AutoScroll = true;
+            this.pnlInfo.Location = new System.Drawing.Point(12, 199);
+            this.pnlInfo.Name = "pnlInfo";
+            this.pnlInfo.Size = new System.Drawing.Size(648, 239);
+            this.pnlInfo.TabIndex = 22;
             // 
             // EditMetaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlInfo);
             this.Controls.Add(this.btnChooseWorkArea);
             this.Controls.Add(this.txtBxWorkArea);
             this.Controls.Add(this.btnLogEdit);
@@ -137,7 +139,7 @@
             this.Controls.Add(this.btnSelectInfoXml);
             this.Controls.Add(this.txtBxInfoXmlPath);
             this.Controls.Add(this.btnImportXml);
-            this.Controls.Add(this.btnEditMeta);
+            this.Controls.Add(this.btnSaveMeta);
             this.Name = "EditMetaForm";
             this.Text = "EditMetaForm";
             this.ResumeLayout(false);
@@ -151,12 +153,12 @@
         private System.Windows.Forms.Button btnSelectInfoXml;
         private System.Windows.Forms.TextBox txtBxInfoXmlPath;
         private System.Windows.Forms.Button btnImportXml;
-        private System.Windows.Forms.Button btnEditMeta;
+        private System.Windows.Forms.Button btnSaveMeta;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnLogEdit;
         private System.Windows.Forms.TextBox txtBxWorkArea;
         private System.Windows.Forms.Button btnChooseWorkArea;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlInfo;
     }
 }

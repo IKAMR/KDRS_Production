@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KDRS_Production
@@ -19,8 +15,6 @@ namespace KDRS_Production
 
         List<InfoXml> infoList;
         List<InfoXml> editList;
-
-        List<string> editedTxtBx;
 
         string infoXmlPath = String.Empty;
         string dbPath = String.Empty;
@@ -79,7 +73,6 @@ namespace KDRS_Production
 
                 //xmlReader.InfoXml(infoXmlPath);
 
-
                 infoList = xmlReader.InfoXmlImport(infoXmlPath);
 
                 foreach (InfoXml info in infoList)
@@ -96,10 +89,9 @@ namespace KDRS_Production
             }
         }
         //-------------------------------------------------------------------------------
-
+        // Save edited values to new info.xml file.
         private void btnSaveMeta_Click(object sender, EventArgs e)
         {
-            // TODO: Hvis noen av textBox er endret lag ny info.xml fil og lagre endring i log fil under 'edited_value'.
             foreach (InfoXml info in infoList)
             {
                 Console.WriteLine("{0} - {1} - {2}", info.ID, info.Name, info.Value);
@@ -115,19 +107,14 @@ namespace KDRS_Production
             {
                 lblError.Text = "";
                 File.Copy(infoXmlPath, newFile);
-
             }
 
             editList = new HashSet<InfoXml>(editList).ToList();
 
-
             foreach (InfoXml edit in editList)
             {
                 Console.WriteLine("Changed info {0}", edit.Name);
-
             }
-
-            //editList.Add(edited);
 
             Console.WriteLine("Changed total {0}", editList.Count);
 
@@ -136,10 +123,9 @@ namespace KDRS_Production
             logger.LogEditInfoXml(dbPath, editList);
         }
         //-------------------------------------------------------------------------------
-
+        // Create a label and a textbox for each node in info.xml.
         private void DisplayInfo()
         {
-            // TODO: Legg til en tekstbox og en label for hver info i infoList.
             int x = 3;
             int y = 10;
             foreach (InfoXml info in infoList)
@@ -166,23 +152,16 @@ namespace KDRS_Production
             }
         }
         //-------------------------------------------------------------------------------
+        // If any content in textboxes are changed -> enable option to save edits.
         private void txtBx_TextChanged(object sender, EventArgs e)
         {
             lblError.Text = ((TextBox)sender).Text;
 
             string name = ((TextBox)sender).Name;
 
-
-            Console.WriteLine("Textbox name : {0}", name);
-
-
             editList.Add(infoList.Find(info => info.ID == name.Remove(0, 5)));
 
-
-
-
             btnSaveMeta.Enabled = true;
-
         }
 
         //-------------------------------------------------------------------------------

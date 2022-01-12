@@ -186,14 +186,11 @@ namespace KDRS_Production
                 txtBxLogTag.Visible = false;
                 cbBxSelectEvent.Visible = true;
 
-                DataColumn tagDesc = templateData.Columns.Add("tagdesc", typeof(String));
-  
+                templateData.Columns.Add("tagdesc", typeof(String));
 
-                var templateDict = new Dictionary<string, string>();
                 foreach (DataRow rw in templateData.Rows)
                 {
                     rw["tagdesc"] = rw["tag"] + " " + rw["description"];
-                  //  templateDict.Add(rw["tag"].ToString(), rw["tag"].ToString() + " " + rw["description"].ToString());
                 }
 
                 cbBxSelectEvent.DataSource = templateData;

@@ -269,8 +269,6 @@ namespace KDRS_Production
             XmlDocument doc = new XmlDocument();
             doc.Load(inputDoc);
 
-           // XPathNavigator navigator = doc.CreateNavigator();
-
             string nameSpace = doc.DocumentElement.NamespaceURI;
             string nameSpaceXsi = doc.DocumentElement.GetNamespaceOfPrefix("xsi");
             string nameSpaceMets = doc.DocumentElement.GetNamespaceOfPrefix("mets");
@@ -299,14 +297,10 @@ namespace KDRS_Production
                     XmlElement node = doc.SelectSingleNode(query, manager) as XmlElement;
 
                     node.InnerText = infoEdit.Value;
-
                 }
-
             }
 
             doc.Save(inputDoc);
-
-
         }
     }
     //############################################################################

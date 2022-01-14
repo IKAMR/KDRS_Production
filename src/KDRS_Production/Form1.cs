@@ -196,7 +196,8 @@ namespace KDRS_Production
                 txtBxLogTag.Visible = false;
                 cbBxSelectEvent.Visible = true;
 
-                templateData.Columns.Add("tagdesc", typeof(String));
+                if (!templateData.Columns.Contains("tagdesc"))
+                    templateData.Columns.Add("tagdesc", typeof(String));
 
                 foreach (DataRow rw in templateData.Rows)
                 {

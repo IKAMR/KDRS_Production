@@ -29,6 +29,9 @@ namespace KDRS_Production
         {
             InitializeComponent();
 
+            this.Height -= pnlEventLog.Height;
+
+
             Text = Globals.toolName + " " + Globals.toolVersion;
 
             logger = new Log();
@@ -40,30 +43,44 @@ namespace KDRS_Production
 
         private void btnOpenEventLog_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtBxOutPath.Text))
+            if (!pnlEventLog.Visible)
             {
-                lblError.Text = "Enter path to work folder";
-            }
-            else
-            {
-                pnlEventLog.Visible = true;
-
-                cbBxStatus.Items.AddRange(new object[]
+                if (String.IsNullOrEmpty(txtBxOutPath.Text))
                 {
+                    lblError.Text = "Enter path to work folder";
+                }
+                else
+                {
+                    this.Height += pnlEventLog.Height;
+
+                    pnlEventLog.Visible = true;
+
+                    cbBxStatus.Items.AddRange(new object[]
+                    {
                 "",
                 "Godkjent",
                 "Godkjent med avvik",
                 "Avvik",
                 "Avvist"
-                });
+                    });
 
-                string targetPath = txtBxOutPath.Text;
-                string logTemplate = targetPath + @"\repository_operations\templates\15KK_nnn_A_depot-log_v1.9_template_2.txt";
+                    string targetPath = txtBxOutPath.Text;
+                    string logTemplate = targetPath + @"\repository_operations\templates\15KK_nnn_A_depot-log_v1.9_template_2.txt";
 
-                csvReader = new CsvReader();
+                    csvReader = new CsvReader();
 
-                templateData = csvReader.ConvertCSVtoDataTable(logTemplate);
+                    templateData = csvReader.ConvertCSVtoDataTable(logTemplate);
+                }
             }
+            else
+            {
+
+                this.Height -= pnlEventLog.Height;
+
+
+                pnlEventLog.Visible = false;
+            }
+
         }
         //-------------------------------------------------------------------------------
 
@@ -93,13 +110,6 @@ namespace KDRS_Production
         }
         //-------------------------------------------------------------------------------
 
-        private void btnSaveMetadata_Click(object sender, EventArgs e)
-        {
-            string targetPath = txtBxOutPath.Text;
-
-            dbPath = targetPath + @"\repository_operations\log.sqlite";
-           // logger.LogInfoXml(dbPath, infoList);
-        }
         //-------------------------------------------------------------------------------
 
         private void btnImportXml_Click(object sender, EventArgs e)
@@ -240,7 +250,7 @@ namespace KDRS_Production
     public static class Globals
     {
         public static readonly String toolName = "KDRS Production";
-        public static readonly String toolVersion = "0.2-RC4";
+        public static readonly String toolVersion = "0.4-rc1";
     }
 
 }

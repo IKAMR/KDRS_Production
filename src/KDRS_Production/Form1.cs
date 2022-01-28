@@ -16,11 +16,15 @@ namespace KDRS_Production
         Log logger;
         XMLInfoReader xmlReader;
         CsvReader csvReader;
+        ToolHandling toolHandler;
+
 
         List<InfoXml> infoList;
 
         string infoXmlPath = String.Empty;
         string dbPath = String.Empty;
+
+        bool toolHandlingExists;
 
         DataTable templateData;
         //-------------------------------------------------------------------------------
@@ -244,14 +248,34 @@ namespace KDRS_Production
             txtBxEventTime.Text = DateTime.Now.ToString("yyyy.MM.ddTHH:mm:ss");
         }
 
+        private void btnToolHandling_Click(object sender, EventArgs e)
+        {
+           
+            if (!toolHandlingExists)
+            {
+                toolHandler = new ToolHandling();
+                toolHandlingExists = true;
+                toolHandler.FormClosed += ToolHandling_FormClosed;
+
+            }
+
+            toolHandler.Show();
+            toolHandler.Activate();
+        }
+
         //-------------------------------------------------------------------------------
 
+        private void ToolHandling_FormClosed(Object sender, FormClosedEventArgs e)
+        {
+            toolHandlingExists = false;
+
+        }
     }
     //====================================================================================================
     public static class Globals
     {
         public static readonly String toolName = "KDRS Production";
-        public static readonly String toolVersion = "0.4-rc1";
+        public static readonly String toolVersion = "0.4-rc2";
     }
 
 }

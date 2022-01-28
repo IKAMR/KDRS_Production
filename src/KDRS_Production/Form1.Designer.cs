@@ -60,6 +60,7 @@
             this.cmbBxLogContent = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnToolHandling = new System.Windows.Forms.Button();
             this.pnlEventLog.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -128,7 +129,7 @@
             this.pnlEventLog.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEventLog.Location = new System.Drawing.Point(0, 205);
             this.pnlEventLog.Name = "pnlEventLog";
-            this.pnlEventLog.Size = new System.Drawing.Size(800, 371);
+            this.pnlEventLog.Size = new System.Drawing.Size(848, 371);
             this.pnlEventLog.TabIndex = 5;
             this.pnlEventLog.Visible = false;
             // 
@@ -354,11 +355,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 576);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 172);
+            this.panel1.Size = new System.Drawing.Size(848, 172);
             this.panel1.TabIndex = 16;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnToolHandling);
             this.panel2.Controls.Add(this.btnExpLog);
             this.panel2.Controls.Add(this.cmbBxLogContent);
             this.panel2.Controls.Add(this.label13);
@@ -371,15 +373,25 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 205);
+            this.panel2.Size = new System.Drawing.Size(848, 205);
             this.panel2.TabIndex = 17;
+            // 
+            // btnToolHandling
+            // 
+            this.btnToolHandling.Location = new System.Drawing.Point(685, 12);
+            this.btnToolHandling.Name = "btnToolHandling";
+            this.btnToolHandling.Size = new System.Drawing.Size(137, 32);
+            this.btnToolHandling.TabIndex = 16;
+            this.btnToolHandling.Text = "Run tool/Import log";
+            this.btnToolHandling.UseVisualStyleBackColor = true;
+            this.btnToolHandling.Click += new System.EventHandler(this.btnToolHandling_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(800, 840);
+            this.ClientSize = new System.Drawing.Size(848, 840);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlEventLog);
             this.Controls.Add(this.panel2);
@@ -430,6 +442,7 @@
         private System.Windows.Forms.Button btnGetTimeStamp;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnToolHandling;
     }
 }
 

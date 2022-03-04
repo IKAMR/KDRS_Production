@@ -120,6 +120,8 @@
             // 
             // pnlInfo
             // 
+            this.pnlInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlInfo.AutoScroll = true;
             this.pnlInfo.Location = new System.Drawing.Point(12, 199);
             this.pnlInfo.Name = "pnlInfo";

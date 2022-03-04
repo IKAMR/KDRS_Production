@@ -200,8 +200,8 @@ namespace KDRS_Production
 
             valueList.Add(new InfoXml("ARCH_SOFT", "Archivist software", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:name/text()", null));
             valueList.Add(new InfoXml("ARCH_SOFT_VER", "Archivist software version", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[1]/text()", null));
-            valueList.Add(new InfoXml("ARCH_SOFT_NOARK", "Archivist software Noark", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[2]/text()", null));
-            valueList.Add(new InfoXml("ARCH_SOFT_NOARK_VER", "Archivist software Noark version", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[2]/text()", null));
+            valueList.Add(new InfoXml("ARCH_SOFT_TYPE", "Archivist software type", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[2]/text()", null));
+            valueList.Add(new InfoXml("ARCH_SOFT_TYPE_VER", "Archivist software type version", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[3]/text()", null));
 
             valueList.Add(new InfoXml("PROD_SOFT", "Producer software", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:name/text()", null));
             valueList.Add(new InfoXml("PROD_SOFT_VER", "Producer software version", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[1]/text()", null));

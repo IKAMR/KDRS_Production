@@ -150,6 +150,9 @@ namespace KDRS_Production
                 pnlInfo.Controls.Add(textBx);
                 y += 25;
             }
+
+           // this.AutoSize = true;
+           // this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
         //-------------------------------------------------------------------------------
         // If any content in textboxes are changed -> enable option to save edits.

@@ -13,17 +13,39 @@ namespace KDRS_Production
 {
     public class Log
     {
+        string dataSource;
 
         //-------------------------------------------------------------------------------
-
+        // Insert data from info.xml into SQLite table, table name is 'info_xml'.
         public void LogInfoXml(string dbPath, List<InfoXml> infoXml)
         {
             if (!File.Exists(dbPath))
             {
                 SQLiteConnection.CreateFile(dbPath);
 
+                dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+
+                Console.WriteLine("Data source: {0}", dataSource);
+
+                using (SQLiteConnection connection = new SQLiteConnection(dataSource))
+                {
+
+                    SQLiteCommand sqlite_cmd;
+                    connection.Open();
+                    Console.WriteLine("Con open");
+
+                    string systable = "sysinfo";
+                    string[] colum = { "date", "version" };
+                    CreateTable(systable, colum, connection);
+
+                    string sysCommand = "INSERT INTO " + systable + "(date, version) VALUES (\'" + DateTime.Now + "\',\' " + Globals.toolVersion + "\');";
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = sysCommand;
+                    sqlite_cmd.ExecuteNonQuery();
+                }
             }
-            string dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+
+            dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
 
             Console.WriteLine("Data source: {0}", dataSource);
 
@@ -33,26 +55,52 @@ namespace KDRS_Production
                 string tableName = "info_xml";
                 connection.Open();
 
-
                 if (!TableExists(connection, tableName))
                 {
                     Console.WriteLine("Create table");
                     string[] columns = { "id", "name", "value", "edited_value"};
                     CreateTable(tableName, columns, connection);
                 }
+                else
+                {
+                    string logCommand = "DROP Table '" + tableName + "'";
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = logCommand;
+                    sqlite_cmd.ExecuteNonQuery();
 
-                /*string getID = "SELECT MAX(ID) FROM " + tableName + ";";
+                    string[] columns = { "id", "name", "value", "edited_value" };
+                    CreateTable(tableName, columns, connection);
 
-                sqlite_cmd = connection.CreateCommand();
-                sqlite_cmd.CommandText = getID;
-                logID = sqlite_cmd.ExecuteNonQuery();
-
-                ev.ID = logID++;*/
+                }
 
                 foreach (InfoXml info in infoXml)
                 {
                     string logCommand = "INSERT INTO " + tableName + "(id, name, value, edited_value) VALUES(\'" + info.ID + "\',\' " + info.Name + "\',\' " + info.Value +
                         "\',\' " + null + "\'); ";
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = logCommand;
+                    sqlite_cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        //-------------------------------------------------------------------------------
+        // Insert edited data from info.xml into SQLite table, table name is 'info_xml', column is 'edited_value'.
+        public void LogEditInfoXml(string dbPath, List<InfoXml> editInfoXml)
+        {
+
+            dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+
+            Console.WriteLine("Data source: {0}", dataSource);
+
+            using (SQLiteConnection connection = new SQLiteConnection(dataSource))
+            {
+                SQLiteCommand sqlite_cmd;
+                string tableName = "info_xml";
+                connection.Open();
+
+                foreach (InfoXml editInfo in editInfoXml)
+                {
+                    string logCommand = "UPDATE " + tableName + " SET edited_value = \'" + editInfo.Value + "\' WHERE id = \'" + editInfo.ID + "\'; ";
                     sqlite_cmd = connection.CreateCommand();
                     sqlite_cmd.CommandText = logCommand;
                     sqlite_cmd.ExecuteNonQuery();
@@ -92,12 +140,10 @@ namespace KDRS_Production
                     if (propertyInfo.PropertyType.Assembly == type.Assembly)
                     {
                         DisplayObject(value, pList);
-
                     }
                     else
                     {
                         pList.Add(propertyInfo);
-
                     }
                 }
             }
@@ -105,18 +151,40 @@ namespace KDRS_Production
         }
 
         //-------------------------------------------------------------------------------
-
+        // Insert an event into a SQLite table, table name is 'event_log'.
         public void LogEvent(string dbPath, Event ev)
         {
+            Console.WriteLine("Log event");
+
             int logID;
             if (!File.Exists(dbPath))
             {
                 Console.WriteLine("creating db");
 
                 SQLiteConnection.CreateFile(dbPath);
+
+                dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+
+                Console.WriteLine("Data source: {0}", dataSource);
+
+                using (SQLiteConnection connection = new SQLiteConnection(dataSource))
+                {
+                    SQLiteCommand sqlite_cmd;
+                    connection.Open();
+                    Console.WriteLine("Con open");
+
+                    string systable = "sysinfo";
+                    string[] colum = { "date", "version" };
+                    CreateTable(systable, colum, connection);
+
+                    string sysCommand = "INSERT INTO " + systable + "(date, version) VALUES (\'" + DateTime.Now + "\',\' " + Globals.toolVersion + "\');";
+                    sqlite_cmd = connection.CreateCommand();
+                    sqlite_cmd.CommandText = sysCommand;
+                    sqlite_cmd.ExecuteNonQuery();
+                }
             }
 
-            string dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
+            dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
 
             Console.WriteLine("Data source: {0}", dataSource);
 
@@ -125,7 +193,7 @@ namespace KDRS_Production
                 SQLiteCommand sqlite_cmd;
                 string tableName = "event_log";
                 connection.Open();
-
+                Console.WriteLine("Con open");
 
                 if (!TableExists(connection, tableName))
                 {
@@ -133,17 +201,22 @@ namespace KDRS_Production
                     string[] columns = { "id", "tag", "timestamp", "description", "status", "comments" };
                     CreateTable(tableName, columns, connection);
                 }
-
+                
                 string getID = "SELECT MAX(ID) FROM " + tableName + ";";
 
-                                sqlite_cmd = connection.CreateCommand();
+                Console.WriteLine("Get ID");
+
+                sqlite_cmd = connection.CreateCommand();
                 sqlite_cmd.CommandText = getID;
-                logID = sqlite_cmd.ExecuteNonQuery();
+                object logIDRes = sqlite_cmd.ExecuteScalar();
+                if (logIDRes is DBNull)
+                    logID = 0;
+                else
+                    logID = Convert.ToInt32(logIDRes);
 
-                if (logID.Equals(-1))
-                    logID = 1;
-
-                ev.ID = logID++;
+                logID++;
+                ev.ID = logID;
+                Console.WriteLine("logID: {0}, ev.ID: {1}", logID, ev.ID);
 
                 string logCommand = "INSERT INTO " + tableName + "(id, tag, timestamp, description, status, comments) VALUES(\'" + ev.ID + "\',\' " + ev.Tag + "\',\' " + ev.TimeStamp +
                     "\',\' " + ev.Description + "\',\' " + ev.Status + "\',\' " + ev.Comments + "\'); ";
@@ -151,7 +224,6 @@ namespace KDRS_Production
                 sqlite_cmd.CommandText = logCommand;
                 sqlite_cmd.ExecuteNonQuery();
             }
-
         }
         //-------------------------------------------------------------------------------
         static void CreateTable(string name, string[] colNames, SQLiteConnection conn)
@@ -197,10 +269,11 @@ namespace KDRS_Production
 
             sqlite_cmd = conn.CreateCommand();
             sqlite_cmd.CommandText = getTables;
-            SQLiteDataReader reader = sqlite_cmd.ExecuteReader();
-
-            if (reader.HasRows)
-                return true;
+            using (SQLiteDataReader reader = sqlite_cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                    return true;
+            }
             return false;
         }
 
@@ -214,7 +287,7 @@ namespace KDRS_Production
                     string logFileName = dbPath + "full_log.csv";
 
                     break;
-
+                //TODO: Other log combinations
             }
         }
 
@@ -226,7 +299,6 @@ namespace KDRS_Production
             if (!File.Exists(dbPath))
             {
                 Console.WriteLine("Log file dosen't exist");
-
             }
 
             string dataSource = @"Data Source=" + dbPath + ";Pooling=true;FailIfMissing=false;Version=3";
@@ -235,10 +307,8 @@ namespace KDRS_Production
 
             List<string> lines = new List<string>();
 
-
             using (SQLiteConnection connection = new SQLiteConnection(dataSource))
             {
-
                 SQLiteCommand sqlite_cmd;
                 SQLiteDataReader reader;
                 connection.Open();
@@ -262,8 +332,8 @@ namespace KDRS_Production
                 {
                     lines.AddRange(GetTableContent(connection, reader.GetValue(0).ToString()));
                 }
-
             }
+
             try
             {
                 File.WriteAllLines(logName, lines);
@@ -357,7 +427,6 @@ namespace KDRS_Production
 
         private List<string> GetTableContent(SQLiteConnection conn, string tableName)
         {
-
             List<string> lines = new List<string>();
 
             string exportQuery = null;
@@ -372,6 +441,10 @@ namespace KDRS_Production
 
                 case "event_log":
                     exportQuery = "SELECT id, tag, timestamp, description, status, comments FROM event_log;";
+                    break;
+
+                case "sysinfo":
+                    exportQuery = "SELECT date, version FROM sysinfo;";
                     break;
             }
 
@@ -406,13 +479,18 @@ namespace KDRS_Production
             //data
             Console.WriteLine("Data");
 
+            object[] values = new object[reader.FieldCount];
+            reader.GetValues(values);
+            lines.Add(string.Join(",", values));
+
             while (reader.Read())
             {
-                object[] values = new object[reader.FieldCount];
+                values = new object[reader.FieldCount];
                 reader.GetValues(values);
                 lines.Add(string.Join(",", values));
             }
-
+            lines.Add("#---------------------------------------------");
+            lines.Add("");
             return lines;
         }
     }
@@ -424,7 +502,6 @@ namespace KDRS_Production
         public string WorkPath { get; set; }
         public string[] BackupPath { get; set; }
         public string LogFilePath { get; set; }
-
         public MetaData MetaData { get; set; }
 
     }
@@ -432,9 +509,8 @@ namespace KDRS_Production
 
     public class MetaData //ephorte??
     {
-
         public string AvtNr { get; set; }
-
+        
         public string CreatorName { get; set; }
         public string CreatorContactPers { get; set; }
         public string CreatorAdress { get; set; }
@@ -455,7 +531,6 @@ namespace KDRS_Production
         public string SystemVersion { get; set; }
         public string SystemType { get; set; }
         public string SystemTypeVersion { get; set; }
-
 
         public string ExtractionSystemName { get; set; }
         public string ExtractionSystemVersion { get; set; }
@@ -482,10 +557,8 @@ namespace KDRS_Production
         public string DepotReceiptSent { get; set; }
         public string DepotDeportedDate { get; set; }
         public string DepotDeportedID { get; set; }
-
     }
     //====================================================================================
-
     public class Contact
     {
         public string Name { get; set; }
@@ -495,7 +568,6 @@ namespace KDRS_Production
         public string Email { get; set; }
     }
     //====================================================================================
-
     public class Software
     {
         public string Name { get; set; }
@@ -504,7 +576,7 @@ namespace KDRS_Production
         public string TypeVersion { get; set; }
     }
     //====================================================================================
-
+    
     public class Depot
     {
         public string DealSent { get; set; }
@@ -515,7 +587,6 @@ namespace KDRS_Production
         public string ReceiptSent { get; set; }
         public string DeportedDate { get; set; }
         public string DeportedID { get; set; }
-
     }
     //====================================================================================
 
@@ -527,6 +598,5 @@ namespace KDRS_Production
         public string Description { get; set; }
         public string Status { get; set; }
         public string Comments { get; set; }
-
     }
 }

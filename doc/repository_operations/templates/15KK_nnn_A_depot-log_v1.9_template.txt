@@ -1,7 +1,10 @@
+tag; timestamp;description; status; comments
+
 # 15KK_nnn_depot-log.txt
 # KDRS_Production template
 
-A1; ; Forberedelse deponering; ; 
+
+A1; ; Forberedelse deponering; ; test
 A1-1; ; ; Kartlegging av system; ; Arkivskaper, Produsent og Depot
 A1-2; ; ; Bevaringsplanlegging/vurdering; ; IKAMR JPn Arkivskaper, Produsent og Depot innmelding system
 A1-3; ; ; Avtale innlevering; ; IKAMR JPn Arkivskaper bekreftelse avtale

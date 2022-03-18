@@ -198,7 +198,7 @@ namespace KDRS_Production
                 if (!TableExists(connection, tableName))
                 {
                     Console.WriteLine("Create table");
-                    string[] columns = { "id", "tag", "timestamp", "description", "status", "comments" };
+                    string[] columns = { "id", "tag", "user", "timestamp", "description", "status", "comments" };
                     CreateTable(tableName, columns, connection);
                 }
                 
@@ -218,7 +218,7 @@ namespace KDRS_Production
                 ev.ID = logID;
                 Console.WriteLine("logID: {0}, ev.ID: {1}", logID, ev.ID);
 
-                string logCommand = "INSERT INTO " + tableName + "(id, tag, timestamp, description, status, comments) VALUES(\'" + ev.ID + "\',\' " + ev.Tag + "\',\' " + ev.TimeStamp +
+                string logCommand = "INSERT INTO " + tableName + "(id, tag, user, timestamp, description, status, comments) VALUES(\'" + ev.ID + "\',\' " + ev.Tag + "\',\' " + ev.User + "\',\' " + ev.TimeStamp +
                     "\',\' " + ev.Description + "\',\' " + ev.Status + "\',\' " + ev.Comments + "\'); ";
                 sqlite_cmd = connection.CreateCommand();
                 sqlite_cmd.CommandText = logCommand;
@@ -440,7 +440,7 @@ namespace KDRS_Production
                     break;
 
                 case "event_log":
-                    exportQuery = "SELECT id, tag, timestamp, description, status, comments FROM event_log;";
+                    exportQuery = "SELECT id, tag, user, timestamp, description, status, comments FROM event_log;";
                     break;
 
                 case "sysinfo":
@@ -595,6 +595,7 @@ namespace KDRS_Production
         public string TimeStamp { get; set; }
         public int ID { get; set; }
         public string Tag { get; set; }
+        public string User { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
         public string Comments { get; set; }

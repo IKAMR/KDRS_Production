@@ -25,6 +25,7 @@ namespace KDRS_Production
         string dbPath = String.Empty;
 
         bool toolHandlingExists;
+        bool templateFilkeExists;
 
         DataTable templateData;
         //-------------------------------------------------------------------------------
@@ -69,11 +70,12 @@ namespace KDRS_Production
                     });
 
                     string targetPath = txtBxOutPath.Text;
-                    string logTemplate = targetPath + @"\repository_operations\templates\15KK_nnn_A_depot-log_v1.9_template_2.txt";
+                    string logTemplate = targetPath + @"\repository_operations\templates\15KK_nnn_A_depot-log_v2.0_template.txt";
 
                     csvReader = new CsvReader();
 
-                    templateData = csvReader.ConvertCSVtoDataTable(logTemplate);
+                    //templateData = csvReader.ConvertCSVtoDataTable(logTemplate);
+                    templateData = csvReader.ImportCSVtoDataTable();
                 }
             }
             else
@@ -94,6 +96,7 @@ namespace KDRS_Production
             {
                 TimeStamp = txtBxEventTime.Text,
                 Tag = txtBxLogTag.Text,
+                User = txtBxUser.Text,
                 Description = txtBxDescription.Text,
                 Status = cbBxStatus.Text,
                 Comments = txtBxComments.Text
@@ -138,12 +141,12 @@ namespace KDRS_Production
 
 
                 infoList = xmlReader.InfoXmlImport(infoXmlPath);
-
+/*
                 foreach (InfoXml info in infoList)
                 {
                     Console.WriteLine("{0} - {1} - {2}", info.ID, info.Name, info.Value);
                 }
-
+                */
                 string targetPath = txtBxOutPath.Text;
 
                 dbPath = targetPath + @"\repository_operations\log.sqlite";

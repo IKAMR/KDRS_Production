@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Xml;
 using System.Xml.XPath;
 using Saxon.Api;
@@ -151,6 +152,7 @@ namespace KDRS_Production
         public List<InfoXml> InfoXmlImport(string inputDoc)
         {
             List<InfoXml> valueList = new List<InfoXml>();
+            int nodeNumber;
 
             valueList.Add(new InfoXml("OBJID", "Object ID", @"//mets:mets/@OBJID/string()", "OBJID"));
 
@@ -162,9 +164,8 @@ namespace KDRS_Production
             valueList.Add(new InfoXml("ARCH_ORG", "Archivist organization", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='ORGANIZATION']/mets:name/text()", null));
 
             valueList.Add(new InfoXml("ARCH_IND", "Archivist individual", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:name/text()", null));
-            valueList.Add(new InfoXml("ARCH_IND_ADR", "Archivist individual, adress", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
-            valueList.Add(new InfoXml("ARCH_IND_PHONE", "Archivist individual, phone", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
-            valueList.Add(new InfoXml("ARCH_IND_EMAIL", "Archivist individual, email", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
+
+            AddNoteNodes(inputDoc, "ARCH_IND", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/", valueList);
 
             valueList.Add(new InfoXml("SUB_ORG", "Submitter organization", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='ORGANIZATION']/mets:name/text()", null));
 
@@ -219,9 +220,141 @@ namespace KDRS_Production
 
             RunXpath(inputDoc, valueList);
 
+            Console.WriteLine("brukte noder for node Producer software:");
+
+            List<string> softNodes = UsedNodes(inputDoc, @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']");
+
+            foreach (string node in softNodes)
+            {
+                Console.WriteLine(node);
+
+            }
+
+
             return valueList;
         }
 
+        //-------------------------------------------------------------------------------
+
+        public void AddNoteNodes(string inputDoc, string parentName, string ParentQuery, List<InfoXml> infoList)
+        {
+            int nodeNumber;
+            foreach (string node in UsedNodes(inputDoc, ParentQuery))
+            {
+                nodeNumber = 1;
+                infoList.Add(UsedNodesContent(parentName, node, nodeNumber));
+                nodeNumber += 1;
+            }
+        }
+
+        //-------------------------------------------------------------------------------
+
+        public InfoXml UsedNodesContent(string parentNode, string noteContent, int nodeNumber)
+        {
+            string name;
+            string description;
+            string query;
+            
+            switch (parentNode)
+            {
+                case "ARCH_IND":
+                    switch (noteContent)
+                    {
+                        case "Address":
+                            name = "ARCH_IND_ADR";
+                            description = "Archivist individual, adress";
+                            query = @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber +"]/text()";
+                            return new InfoXml(name, description, query, null);
+
+                        case "Telephone":
+                            name = "ARCH_IND_PHONE";
+                            description = "Archivist individual, phone";
+                            query = @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/text()";
+                            return new InfoXml(name, description, query, null);
+                        case "Email":
+                            name = "ARCH_IND_EMAIL";
+                            description = "Archivist individual, email";
+                            query = @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/text()";
+                            return new InfoXml(name, description, query, null);
+                    }
+                    break;
+            }
+             return null;
+
+        }
+
+        //-------------------------------------------------------------------------------
+        public List<string> UsedNodes(string inputDoc, string nodeQuery)
+        {
+            List<string> nodes = new List<string>();
+
+            Processor processor = new Processor();
+            XmlDocument infoXml = new XmlDocument();
+
+            infoXml.Load(inputDoc);
+
+            XdmNode xmlDoc = processor.NewDocumentBuilder().Build(new XmlNodeReader(infoXml));
+
+            XPathCompiler xPathCompiler = processor.NewXPathCompiler();
+
+            string nameSpace = infoXml.DocumentElement.NamespaceURI;
+            string nameSpaceXsi = infoXml.DocumentElement.GetNamespaceOfPrefix("xsi");
+            string nameSpaceMets = infoXml.DocumentElement.GetNamespaceOfPrefix("mets");
+
+            xPathCompiler.DeclareNamespace("", nameSpace);
+            xPathCompiler.DeclareNamespace("xsi", nameSpaceXsi);
+            xPathCompiler.DeclareNamespace("mets", nameSpaceMets);
+
+            string result;
+
+            string nodesQuery = nodeQuery + @"/mets:note[last()]/text()";
+
+            try
+            {
+                result = xPathCompiler.Evaluate(nodesQuery, xmlDoc).ToString();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unable to execute query : {0}", nodesQuery);
+                result = null;
+
+                throw e;
+            }
+
+            result = result.Split(':')[1];
+
+            nodes = result.Split(',').ToList();
+
+            return nodes;
+        }
+
+        //-------------------------------------------------------------------------------
+     /*   
+        public string GetUsedNodesContent(string nodeQuery, string inputDoc)
+        {
+            Processor processor = new Processor();
+            XmlDocument infoXml = new XmlDocument();
+
+            infoXml.Load(inputDoc);
+
+            XdmNode xmlDoc = processor.NewDocumentBuilder().Build(new XmlNodeReader(infoXml));
+
+            XPathCompiler xPathCompiler = processor.NewXPathCompiler();
+
+            string nameSpace = infoXml.DocumentElement.NamespaceURI;
+            string nameSpaceXsi = infoXml.DocumentElement.GetNamespaceOfPrefix("xsi");
+            string nameSpaceMets = infoXml.DocumentElement.GetNamespaceOfPrefix("mets");
+
+            xPathCompiler.DeclareNamespace("", nameSpace);
+            xPathCompiler.DeclareNamespace("xsi", nameSpaceXsi);
+            xPathCompiler.DeclareNamespace("mets", nameSpaceMets);
+
+            string result;
+
+
+            return result;
+        }
+        */
         //-------------------------------------------------------------------------------
 
         // Take xml file and run xpath queries from input list, put results in info object parameter 'value'

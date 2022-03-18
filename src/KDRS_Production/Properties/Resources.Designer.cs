@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KDRS_Produksjon.Properties
-{
-
-
+namespace KDRS_Production.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,64 @@ namespace KDRS_Produksjon.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("KDRS_Production.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tag; timestamp;description; status; comments
+        ///
+        ///# 15KK_nnn_depot-log.txt
+        ///# KDRS_Production template
+        ///
+        ///
+        ///A1; ; Forberedelse deponering; ; test
+        ///A1-1; ; Kartlegging av system; ; Arkivskaper, Produsent og Depot
+        ///A1-2; ; Bevaringsplanlegging/vurdering; ; IKAMR JPn Arkivskaper, Produsent og Depot innmelding system
+        ///A1-3; ; Avtale innlevering; ; IKAMR JPn Arkivskaper bekreftelse avtale
+        ///A1-4; ; Samle opplysninger; ; IKAMR JPn Arkivskaper/Produsent/ &lt;system&gt; Informasjon om innlevering
+        ///A1-5; ; Uttrekk; ; Produse [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _15KK_nnn_A_depot_log_v2_0_template {
+            get {
+                return ResourceManager.GetString("_15KK_nnn_A_depot_log_v2_0_template", resourceCulture);
             }
         }
     }

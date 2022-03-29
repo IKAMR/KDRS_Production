@@ -170,29 +170,42 @@ namespace KDRS_Production
             valueList.Add(new InfoXml("SUB_ORG", "Submitter organization", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='ORGANIZATION']/mets:name/text()", null));
 
             valueList.Add(new InfoXml("SUB_IND", "Submitter individual", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:name/text()", null));
-            valueList.Add(new InfoXml("SUB_IND_ADR", "Submitter individual, adress", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
-            valueList.Add(new InfoXml("SUB_IND_PHONE", "Submitter individual, phone", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
-            valueList.Add(new InfoXml("SUB_IND_EMAIL", "Submitter individual, email", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
+
+            AddNoteNodes(inputDoc, "SUB_IND", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/", valueList);
+
+
+         //   valueList.Add(new InfoXml("SUB_IND_ADR", "Submitter individual, adress", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
+           // valueList.Add(new InfoXml("SUB_IND_PHONE", "Submitter individual, phone", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
+            //valueList.Add(new InfoXml("SUB_IND_EMAIL", "Submitter individual, email", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
 
             valueList.Add(new InfoXml("PROD_ORG", "Producer organization", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='ORGANIZATION']/mets:name/text()", null));
-            valueList.Add(new InfoXml("PROD_ORG", "Producer individual", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:name/text()", null));
-            valueList.Add(new InfoXml("PROD_ORG_ADR",  "Producer individual, adress", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
-            valueList.Add(new InfoXml("PROD_ORG_PHONE", "Producer individual, phone", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
-            valueList.Add(new InfoXml("PROD_ORG_EMAIL", "Producer individual, email", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
+          
+            valueList.Add(new InfoXml("PROD_IND", "Producer individual", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:name/text()", null));
+           
+            AddNoteNodes(inputDoc, "PROD_IND", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/", valueList);
+
+          // valueList.Add(new InfoXml("PROD_IND_ADR",  "Producer individual, adress", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
+          // valueList.Add(new InfoXml("PROD_IND_PHONE", "Producer individual, phone", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
+          // valueList.Add(new InfoXml("PROD_IND_EMAIL", "Producer individual, email", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
 
             valueList.Add(new InfoXml("IPO_ORG", "Ipowner organization", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='ORGANIZATION']/mets:name/text()", null));
 
             valueList.Add(new InfoXml("IPO_IND", "Ipowner individual", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:name/text()", null));
-            valueList.Add(new InfoXml("IPO_IND_ADR", "Ipowner individual, adress", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
-            valueList.Add(new InfoXml("IPO_IND_PHONE", "Ipowner individual, phone", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
-            valueList.Add(new InfoXml("IPO_IND_EMAIL", "Ipowner individual, email", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
+        
+            AddNoteNodes(inputDoc, "IPO_IND", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/", valueList);
+
+         //   valueList.Add(new InfoXml("IPO_IND_ADR", "Ipowner individual, adress", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
+         //   valueList.Add(new InfoXml("IPO_IND_PHONE", "Ipowner individual, phone", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
+         //   valueList.Add(new InfoXml("IPO_IND_EMAIL", "Ipowner individual, email", @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
 
             valueList.Add(new InfoXml("CRE_ORG", "Creator organization", @"//mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/mets:name/text()", null));
 
             valueList.Add(new InfoXml("CRE_IND", "Creator individual", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:name/text()", null));
-            valueList.Add(new InfoXml("CRE_IND_ADR", "Creator individual, adress", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
-            valueList.Add(new InfoXml("CRE_IND_PHONE", "Creator individual, phone", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
-            valueList.Add(new InfoXml("CRE_IND_EMAIL", "Creator individual, email", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
+            AddNoteNodes(inputDoc, "CRE_IND", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/", valueList);
+
+           // valueList.Add(new InfoXml("CRE_IND_ADR", "Creator individual, adress", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[1]/text()", null));
+           // valueList.Add(new InfoXml("CRE_IND_PHONE", "Creator individual, phone", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[2]/text()", null));
+           // valueList.Add(new InfoXml("CRE_IND_EMAIL", "Creator individual, email", @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[3]/text()", null));
 
             valueList.Add(new InfoXml("CRE_SOFT", "Creator software", @"//mets:agent[@ROLE='CREATOR' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:name/text()", null));
             valueList.Add(new InfoXml("CRE_SOFT_VER", "Creator software version", @"//mets:agent[@ROLE='CREATOR' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[1]/text()", null));
@@ -200,14 +213,19 @@ namespace KDRS_Production
             valueList.Add(new InfoXml("PRES_ORG", "Preservator organization", @"//mets:agent[@ROLE='PRESERVATION' and @TYPE='ORGANIZATION']/mets:name/text()", null));
 
             valueList.Add(new InfoXml("ARCH_SOFT", "Archivist software", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:name/text()", null));
-            valueList.Add(new InfoXml("ARCH_SOFT_VER", "Archivist software version", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[1]/text()", null));
-            valueList.Add(new InfoXml("ARCH_SOFT_TYPE", "Archivist software type", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[2]/text()", null));
-            valueList.Add(new InfoXml("ARCH_SOFT_TYPE_VER", "Archivist software type version", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[3]/text()", null));
+            AddNoteNodes(inputDoc, "ARCH_SOFT", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/", valueList);
+
+        //   valueList.Add(new InfoXml("ARCH_SOFT_VER", "Archivist software version", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[1]/text()", null));
+        //   valueList.Add(new InfoXml("ARCH_SOFT_TYPE", "Archivist software type", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[2]/text()", null));
+        //   valueList.Add(new InfoXml("ARCH_SOFT_TYPE_VER", "Archivist software type version", @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[3]/text()", null));
 
             valueList.Add(new InfoXml("PROD_SOFT", "Producer software", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:name/text()", null));
-            valueList.Add(new InfoXml("PROD_SOFT_VER", "Producer software version", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[1]/text()", null));
-            valueList.Add(new InfoXml("PROD_SOFT_NOARK", "Producer software Noark", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[2]/text()", null));
-            valueList.Add(new InfoXml("PROD_SOFT_NOARK_VER", "Producer software Noark version", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[3]/text()", null));
+            AddNoteNodes(inputDoc, "PROD_SOFT", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/", valueList);
+
+
+          //  valueList.Add(new InfoXml("PROD_SOFT_VER", "Producer software version", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[1]/text()", null));
+          //  valueList.Add(new InfoXml("PROD_SOFT_NOARK", "Producer software type", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[2]/text()", null));
+          //  valueList.Add(new InfoXml("PROD_SOFT_NOARK_VER", "Producer software type version", @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[3]/text()", null));
 
             valueList.Add(new InfoXml("DEL_SPEC", "Delivery specification", @"//mets:altRecordID[@TYPE='DELIVERYSPECIFICATION']/text()", null));
             valueList.Add(new InfoXml("SUB_AGREEMENT", "Submission agreement", @"//mets:altRecordID[@TYPE='SUBMISSIONAGREEMENT']/text()", null));
@@ -238,10 +256,9 @@ namespace KDRS_Production
 
         public void AddNoteNodes(string inputDoc, string parentName, string ParentQuery, List<InfoXml> infoList)
         {
-            int nodeNumber;
+            int nodeNumber = 1;
             foreach (string node in UsedNodes(inputDoc, ParentQuery))
             {
-                nodeNumber = 1;
                 infoList.Add(UsedNodesContent(parentName, node, nodeNumber));
                 nodeNumber += 1;
             }
@@ -258,26 +275,153 @@ namespace KDRS_Production
             switch (parentNode)
             {
                 case "ARCH_IND":
+                    query = @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/text()";
+
                     switch (noteContent)
                     {
                         case "Address":
                             name = "ARCH_IND_ADR";
                             description = "Archivist individual, adress";
-                            query = @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber +"]/text()";
                             return new InfoXml(name, description, query, null);
 
                         case "Telephone":
                             name = "ARCH_IND_PHONE";
                             description = "Archivist individual, phone";
-                            query = @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/text()";
                             return new InfoXml(name, description, query, null);
+                       
                         case "Email":
                             name = "ARCH_IND_EMAIL";
                             description = "Archivist individual, email";
-                            query = @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/text()";
                             return new InfoXml(name, description, query, null);
                     }
                     break;
+               
+                case "SUB_IND":
+                    query = @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='SUBMITTER' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/ text()";
+
+                    switch (noteContent)
+                    {
+                        case "Address":
+                            name = "SUB_IND_ADR";
+                            description = "Submitter individual, adress";
+                            return new InfoXml(name, description, query, null);
+
+                        case "Telephone":
+                            name = "SUB_IND_PHONE";
+                            description = "Submitter individual, phone";
+                            return new InfoXml(name, description, query, null);
+                      
+                        case "Email":
+                            name = "SUB_IND_EMAIL";
+                            description = "Submitter individual, email";
+                            return new InfoXml(name, description, query, null);
+                    }
+                    break;
+              
+                case "PROD_IND":
+                    query = @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/ text()";
+                    switch (noteContent)
+                    {
+                        case "Address":
+                            name = "PROD_IND_ADR";
+                            description = "Producer individual, adress";
+                            return new InfoXml(name, description, query, null);
+
+                        case "Telephone":
+                            name = "PROD_IND_PHONE";
+                            description = "Producer individual, phone";
+                            return new InfoXml(name, description, query, null);
+                      
+                        case "Email":
+                            name = "PROD_IND_EMAIL";
+                            description = "Producer individual, email";
+                            return new InfoXml(name, description, query, null);
+                    }
+                    break;
+
+                case "IPO_IND":
+                    query = @"//mets:agent[@ROLE='IPOWNER' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/ text()";
+                    switch (noteContent)
+                    {
+                        case "Address":
+                            name = "IPO_IND_ADR";
+                            description = "Ipowner individual, adress";
+                            return new InfoXml(name, description, query, null);
+
+                        case "Telephone":
+                            name = "IPO_IND_PHONE";
+                            description = "Ipowner individual, phone";
+                            return new InfoXml(name, description, query, null);
+                        case "Email":
+                            name = "IPO_IND_EMAIL";
+                            description = "Ipowner individual, email";
+                            return new InfoXml(name, description, query, null);
+                    }
+                    break;
+
+                case "CRE_IND":
+                    query = @"//mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/mets:note[" + nodeNumber + "]/ text()";
+                    switch (noteContent)
+                    {
+                        case "Address":
+                            name = "CRE_IND_ADR";
+                            description = "Creator individual, adress";
+                            return new InfoXml(name, description, query, null);
+
+                        case "Telephone":
+                            name = "CRE_IND_PHONE";
+                            description = "Creator individual, phone";
+                            return new InfoXml(name, description, query, null);
+                        case "Email":
+                            name = "CRE_IND_EMAIL";
+                            description = "Creator individual, email";
+                            return new InfoXml(name, description, query, null);
+                    }
+                    break;
+
+                case "ARCH_SOFT":
+                    query = @"//mets:agent[@ROLE='ARCHIVIST' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[" + nodeNumber + "]/ text()";
+                    switch (noteContent)
+                    {
+                        case "Version":
+                            name = "ARCH_SOFT_VER";
+                            description = "Archivist software version";
+                            return new InfoXml(name, description, query, null);
+
+                        case "Type":
+                            name = "ARCH_SOFT_TYPE";
+                            description = "Archivist software type";
+                            return new InfoXml(name, description, query, null);
+                        case "TypeVersion":
+                            name = "ARCH_SOFT_TYPE_VER";
+                            description = "Archivist software type version";
+                            return new InfoXml(name, description, query, null);
+                    }
+                    break;
+
+                case "PROD_SOFT":
+                    query = @"//mets:agent[@ROLE='OTHER' and @OTHERROLE='PRODUCER' and @TYPE='OTHER' and @OTHERTYPE='SOFTWARE']/mets:note[" + nodeNumber + "]/ text()";
+                    switch (noteContent)
+                    {
+                        case "Version":
+                            name = "PROD_SOFT_VER";
+                            description = "Producer software version";
+                            return new InfoXml(name, description, query, null);
+
+                        case "Type":
+                            name = "PROD_SOFT_TYPE";
+                            description = "Producer software type";
+                            return new InfoXml(name, description, query, null);
+                        case "TypeVersion":
+                            name = "PROD_SOFT_TYPE_VER";
+                            description = "Producer software type version";
+                            return new InfoXml(name, description, query, null);
+                    }
+                    break;
+
+
+
+
             }
              return null;
 
@@ -312,6 +456,10 @@ namespace KDRS_Production
             try
             {
                 result = xPathCompiler.Evaluate(nodesQuery, xmlDoc).ToString();
+                Console.WriteLine("used query : {0}", nodesQuery);
+
+                Console.WriteLine("used notes : {0}", result);
+
             }
             catch (Exception e)
             {

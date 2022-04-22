@@ -21,6 +21,8 @@ namespace KDRS_Production
 
         List<InfoXml> infoList;
 
+        string packageID = String.Empty;
+        string workAreaPath = String.Empty;
         string infoXmlPath = String.Empty;
         string dbPath = String.Empty;
 
@@ -43,6 +45,8 @@ namespace KDRS_Production
 
             //FOR DEV - TO BE REMOVED
             txtBxOutPath.Text = @"C:\developer\c#\kdrs_production\doc";
+            txtBxPackageID.Text = "15nn_test";
+            
         }
         //-------------------------------------------------------------------------------
 
@@ -82,7 +86,6 @@ namespace KDRS_Production
             {
 
                 this.Height -= pnlEventLog.Height;
-
 
                 pnlEventLog.Visible = false;
             }
@@ -250,13 +253,17 @@ namespace KDRS_Production
         {
             txtBxEventTime.Text = DateTime.Now.ToString("yyyy.MM.ddTHH:mm:ss");
         }
+        //-------------------------------------------------------------------------------
 
         private void btnToolHandling_Click(object sender, EventArgs e)
         {
            
             if (!toolHandlingExists)
             {
-                toolHandler = new ToolHandling();
+                workAreaPath = txtBxOutPath.Text;
+                packageID = txtBxPackageID.Text;
+
+                toolHandler = new ToolHandling(packageID, workAreaPath);
                 toolHandlingExists = true;
                 toolHandler.FormClosed += ToolHandling_FormClosed;
 
@@ -271,7 +278,6 @@ namespace KDRS_Production
         private void ToolHandling_FormClosed(Object sender, FormClosedEventArgs e)
         {
             toolHandlingExists = false;
-
         }
     }
     //====================================================================================================

@@ -1,13 +1,9 @@
-﻿using Microsoft.Data.Sqlite;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KDRS_Production
 {
@@ -58,7 +54,7 @@ namespace KDRS_Production
                 if (!TableExists(connection, tableName))
                 {
                     Console.WriteLine("Create table");
-                    string[] columns = { "id", "name", "value", "edited_value"};
+                    string[] columns = { "id", "name", "value", "edited_value" };
                     CreateTable(tableName, columns, connection);
                 }
                 else
@@ -201,7 +197,7 @@ namespace KDRS_Production
                     string[] columns = { "id", "tag", "user", "timestamp", "description", "status", "comments" };
                     CreateTable(tableName, columns, connection);
                 }
-                
+
                 string getID = "SELECT MAX(ID) FROM " + tableName + ";";
 
                 Console.WriteLine("Get ID");
@@ -225,6 +221,14 @@ namespace KDRS_Production
                 sqlite_cmd.ExecuteNonQuery();
             }
         }
+
+        //-------------------------------------------------------------------------------
+        // Insert Noark5 test result into a SQLite table, table name is 'noark5_test'.
+        public void LogTestResults(string dbPath, TestResults results)
+        {
+
+        }
+
         //-------------------------------------------------------------------------------
         static void CreateTable(string name, string[] colNames, SQLiteConnection conn)
         {
@@ -287,7 +291,7 @@ namespace KDRS_Production
                     string logFileName = dbPath + "full_log.csv";
 
                     break;
-                //TODO: Other log combinations
+                    //TODO: Other log combinations
             }
         }
 
@@ -351,7 +355,7 @@ namespace KDRS_Production
         {
             if (!File.Exists(dbPath))
             {
-                    Console.WriteLine("Log file dosen't exist");
+                Console.WriteLine("Log file dosen't exist");
 
             }
 
@@ -394,7 +398,7 @@ namespace KDRS_Production
                 if (reader.Read())
                 {
                     string[] columns = new string[reader.FieldCount];
-                    for (int i=0; i < reader.FieldCount; i++)
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
                         columns[i] = reader.GetName(i);
                     }
@@ -510,7 +514,7 @@ namespace KDRS_Production
     public class MetaData //ephorte??
     {
         public string AvtNr { get; set; }
-        
+
         public string CreatorName { get; set; }
         public string CreatorContactPers { get; set; }
         public string CreatorAdress { get; set; }
@@ -576,7 +580,7 @@ namespace KDRS_Production
         public string TypeVersion { get; set; }
     }
     //====================================================================================
-    
+
     public class Depot
     {
         public string DealSent { get; set; }
@@ -599,5 +603,14 @@ namespace KDRS_Production
         public string Description { get; set; }
         public string Status { get; set; }
         public string Comments { get; set; }
+    }
+    //====================================================================================
+    public class TestResults
+    {
+        public string TestID { get; set; }
+        public string SoftwareID { get; set; }
+        public DateTime TestDate { get; set; }
+        public long TestResult { get; set; }
+
     }
 }

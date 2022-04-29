@@ -48,6 +48,7 @@ namespace KDRS_Production
             this.txtBxDroidJar = new System.Windows.Forms.TextBox();
             this.btnChooseDroidJar = new System.Windows.Forms.Button();
             this.lblToolError = new System.Windows.Forms.Label();
+            this.txtBxDroidInfo = new System.Windows.Forms.TextBox();
             this.a.SuspendLayout();
             this.pnlDroid.SuspendLayout();
             this.SuspendLayout();
@@ -162,6 +163,7 @@ namespace KDRS_Production
             // 
             // pnlDroid
             // 
+            this.pnlDroid.Controls.Add(this.txtBxDroidInfo);
             this.pnlDroid.Controls.Add(this.btnRunDroid);
             this.pnlDroid.Controls.Add(this.txtBxDroidJar);
             this.pnlDroid.Controls.Add(this.btnChooseDroidJar);
@@ -206,6 +208,15 @@ namespace KDRS_Production
             this.lblToolError.Size = new System.Drawing.Size(54, 13);
             this.lblToolError.TabIndex = 28;
             this.lblToolError.Text = "Error label";
+            // 
+            // txtBxDroidInfo
+            // 
+            this.txtBxDroidInfo.Location = new System.Drawing.Point(148, 40);
+            this.txtBxDroidInfo.Multiline = true;
+            this.txtBxDroidInfo.Name = "txtBxDroidInfo";
+            this.txtBxDroidInfo.ReadOnly = true;
+            this.txtBxDroidInfo.Size = new System.Drawing.Size(494, 31);
+            this.txtBxDroidInfo.TabIndex = 31;
             // 
             // ToolHandling
             // 
@@ -255,5 +266,6 @@ namespace KDRS_Production
         private System.Windows.Forms.TextBox txtBxDroidJar;
         private System.Windows.Forms.Button btnChooseDroidJar;
         private System.Windows.Forms.Label lblToolError;
+        private System.Windows.Forms.TextBox txtBxDroidInfo;
     }
 }

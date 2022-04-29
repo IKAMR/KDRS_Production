@@ -42,13 +42,12 @@ namespace KDRS_Production
             }
             return dt;
         }
-
+        //-------------------------------------------------------------
         public DataTable ImportCSVtoDataTable()
         {
             DataTable dt = new DataTable();
 
             var assembly = Assembly.GetExecutingAssembly();
-
 
             using (Stream stream = assembly.GetManifestResourceStream("KDRS_Production.Resources.15KK_nnn_A_depot - log_v2.0_template.txt"))
             using (StreamReader sr = new StreamReader(stream))

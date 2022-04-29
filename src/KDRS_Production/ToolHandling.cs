@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KDRS_Production
 {
     public partial class ToolHandling : Form
     {
-
-        string resultFolder = String.Empty;
-
         public ToolHandling(string packageID, string workingDir)
         {
             InitializeComponent();
@@ -33,10 +24,11 @@ namespace KDRS_Production
 
         private void RunDroidProcesses(string droidJarPath, string targetFolder, string resultFolder, string packageID)
         {
+            /*
             targetFolder = txtBxTargetFolder.Text;
             resultFolder = txtBxResultFolder.Text;
             packageID = txtBxPackageID.Text;
-            
+            */
             
             if (string.IsNullOrEmpty(targetFolder) || string.IsNullOrEmpty(resultFolder) || string.IsNullOrEmpty(packageID))
             {
@@ -44,7 +36,6 @@ namespace KDRS_Production
             }
             else
             {
-
                 string droidFolderName = resultFolder.Split(Path.DirectorySeparatorChar).Last();
                 string droidProjectName = packageID + @"_" + droidFolderName + @".droid";
 
@@ -53,11 +44,10 @@ namespace KDRS_Production
 
                 Console.WriteLine("JAVA Command: {0} {1}", "java", processString);
 
-
                 this.Enabled = false;
 
+                txtBxDroidInfo.Text = "Adding files to droid project and running droid";
                 RunJavaProcess(processString);
-
 
                 string droidResultFile = packageID + @"_" + droidFolderName + @".csv";
 
@@ -101,7 +91,6 @@ namespace KDRS_Production
 
                 RunJavaProcess(processString);
                 Console.WriteLine("Droid finish");
-
             }
         }
         //-------------------------------------------------------------------------------
@@ -115,16 +104,13 @@ namespace KDRS_Production
                 droidProcess.Start();
                 droidProcess.WaitForExit();
                 this.Enabled = true;
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("Droid unable to run");
                 throw e;
-
             }
         }
-
 
         //-------------------------------------------------------------------------------
 

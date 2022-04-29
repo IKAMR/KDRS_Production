@@ -9,7 +9,6 @@ namespace KDRS_Production
 {
     public partial class EditMetaForm : Form
     {
-
         Log logger;
         XMLInfoReader xmlReader;
 
@@ -19,7 +18,6 @@ namespace KDRS_Production
         string infoXmlPath = String.Empty;
         string dbPath = String.Empty;
         //-------------------------------------------------------------------------------
-
         public EditMetaForm(string infoXmlPath, string dbPath, List<InfoXml> infoList)
         {
             InitializeComponent();

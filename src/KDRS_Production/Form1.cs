@@ -18,16 +18,16 @@ namespace KDRS_Production
         CsvReader csvReader;
         ToolHandling toolHandler;
 
-
         List<InfoXml> infoList;
 
         string packageID = String.Empty;
         string workAreaPath = String.Empty;
         string infoXmlPath = String.Empty;
         string dbPath = String.Empty;
+        string targetPath = String.Empty;
 
         bool toolHandlingExists;
-        bool templateFilkeExists;
+        bool templateFileExists;
 
         DataTable templateData;
         //-------------------------------------------------------------------------------
@@ -38,18 +38,16 @@ namespace KDRS_Production
 
             this.Height -= pnlEventLog.Height;
 
-
             Text = Globals.toolName + " " + Globals.toolVersion;
 
             logger = new Log();
 
             //FOR DEV - TO BE REMOVED
             txtBxOutPath.Text = @"C:\developer\c#\kdrs_production\doc";
-            txtBxPackageID.Text = "15nn_test";
             
+            txtBxPackageID.Text = "15nn_test";
         }
         //-------------------------------------------------------------------------------
-
         private void btnOpenEventLog_Click(object sender, EventArgs e)
         {
             if (!pnlEventLog.Visible)
@@ -66,14 +64,14 @@ namespace KDRS_Production
 
                     cbBxStatus.Items.AddRange(new object[]
                     {
-                "",
-                "Godkjent",
-                "Godkjent med avvik",
-                "Avvik",
-                "Avvist"
+                        "",
+                        "Godkjent",
+                        "Godkjent med avvik",
+                        "Avvik",
+                        "Avvist"
                     });
 
-                    string targetPath = txtBxOutPath.Text;
+                    targetPath = txtBxOutPath.Text;
                     string logTemplate = targetPath + @"\repository_operations\templates\15KK_nnn_A_depot-log_v2.0_template.txt";
 
                     csvReader = new CsvReader();
@@ -84,12 +82,10 @@ namespace KDRS_Production
             }
             else
             {
-
                 this.Height -= pnlEventLog.Height;
 
                 pnlEventLog.Visible = false;
             }
-
         }
         //-------------------------------------------------------------------------------
 
@@ -105,7 +101,7 @@ namespace KDRS_Production
                 Comments = txtBxComments.Text
             };
 
-            string targetPath = txtBxOutPath.Text;
+            targetPath = txtBxOutPath.Text;
 
             dbPath = targetPath + @"\repository_operations\log.sqlite";
             if (String.IsNullOrEmpty(txtBxOutPath.Text))
@@ -142,7 +138,6 @@ namespace KDRS_Production
 
                 //xmlReader.InfoXml(infoXmlPath);
 
-
                 infoList = xmlReader.InfoXmlImport(infoXmlPath);
 /*
                 foreach (InfoXml info in infoList)
@@ -150,9 +145,9 @@ namespace KDRS_Production
                     Console.WriteLine("{0} - {1} - {2}", info.ID, info.Name, info.Value);
                 }
                 */
-                string targetPath = txtBxOutPath.Text;
+                targetPath = txtBxOutPath.Text;
 
-                dbPath = targetPath + @"\repository_operations\log.sqlite";
+                dbPath = targetPath + @"\repository_operations\" + packageID +  @"_event_log.sqlite";
 
                 logger.LogInfoXml(dbPath, infoList);
             }
@@ -176,17 +171,17 @@ namespace KDRS_Production
             else
             {
                 lblError.Text = "";
-                string targetPath = txtBxOutPath.Text;
+                targetPath = txtBxOutPath.Text;
                 Console.WriteLine("Exporting log");
 
-                dbPath = targetPath + @"\repository_operations\log.sqlite";
-                string logNAme = targetPath + @"\repository_operations\full_log.csv";
+                dbPath = targetPath + @"\repository_operations\" + packageID + @"_event_log.sqlite";
+                string logName = targetPath + @"\repository_operations\full_log.csv";
 
                 if (!File.Exists(dbPath))
                 {
                     lblError.Text = "Cannot find Log file: " +  dbPath;
                 }else
-                    logger.PrintAllLog(dbPath, logNAme);
+                    logger.PrintAllLog(dbPath, logName);
                 //logger.PrintInfoLog(dbPath);
             }
         }
@@ -217,7 +212,6 @@ namespace KDRS_Production
                 cbBxSelectEvent.DataSource = templateData;
                 cbBxSelectEvent.ValueMember = "tag";
                 cbBxSelectEvent.DisplayMember = "tagdesc";
-
             }
             else
             {
@@ -254,10 +248,9 @@ namespace KDRS_Production
             txtBxEventTime.Text = DateTime.Now.ToString("yyyy.MM.ddTHH:mm:ss");
         }
         //-------------------------------------------------------------------------------
-
+        // Prevents opening more than one Toolhandling windows.
         private void btnToolHandling_Click(object sender, EventArgs e)
         {
-           
             if (!toolHandlingExists)
             {
                 workAreaPath = txtBxOutPath.Text;
@@ -266,9 +259,7 @@ namespace KDRS_Production
                 toolHandler = new ToolHandling(packageID, workAreaPath);
                 toolHandlingExists = true;
                 toolHandler.FormClosed += ToolHandling_FormClosed;
-
             }
-
             toolHandler.Show();
             toolHandler.Activate();
         }
@@ -284,7 +275,7 @@ namespace KDRS_Production
     public static class Globals
     {
         public static readonly String toolName = "KDRS Production";
-        public static readonly String toolVersion = "0.5";
+        public static readonly String toolVersion = "0.5-rc1";
     }
 
 }

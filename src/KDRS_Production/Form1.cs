@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -46,6 +47,12 @@ namespace KDRS_Production
             txtBxOutPath.Text = @"C:\developer\c#\kdrs_production\doc";
             
             txtBxPackageID.Text = "15nn_test";
+
+            string[] assemblyNames = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+
+            foreach (string assemblyName in assemblyNames)
+                Console.WriteLine(assemblyName);    
+
         }
         //-------------------------------------------------------------------------------
         private void btnOpenEventLog_Click(object sender, EventArgs e)

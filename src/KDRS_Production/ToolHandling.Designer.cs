@@ -44,11 +44,12 @@ namespace KDRS_Production
             this.btnChooseResultFolder = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.pnlDroid = new System.Windows.Forms.Panel();
+            this.txtBxDroidInfo = new System.Windows.Forms.TextBox();
             this.btnRunDroid = new System.Windows.Forms.Button();
             this.txtBxDroidJar = new System.Windows.Forms.TextBox();
             this.btnChooseDroidJar = new System.Windows.Forms.Button();
             this.lblToolError = new System.Windows.Forms.Label();
-            this.txtBxDroidInfo = new System.Windows.Forms.TextBox();
+            this.btnChkMissFiles = new System.Windows.Forms.Button();
             this.a.SuspendLayout();
             this.pnlDroid.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +90,7 @@ namespace KDRS_Production
             this.a.Controls.Add(this.btnImportLog);
             this.a.Controls.Add(this.txtBxLogPath);
             this.a.Controls.Add(this.btnSelectLog);
-            this.a.Location = new System.Drawing.Point(12, 289);
+            this.a.Location = new System.Drawing.Point(10, 266);
             this.a.Name = "a";
             this.a.Size = new System.Drawing.Size(673, 92);
             this.a.TabIndex = 21;
@@ -172,6 +173,15 @@ namespace KDRS_Production
             this.pnlDroid.Size = new System.Drawing.Size(675, 100);
             this.pnlDroid.TabIndex = 27;
             // 
+            // txtBxDroidInfo
+            // 
+            this.txtBxDroidInfo.Location = new System.Drawing.Point(148, 40);
+            this.txtBxDroidInfo.Multiline = true;
+            this.txtBxDroidInfo.Name = "txtBxDroidInfo";
+            this.txtBxDroidInfo.ReadOnly = true;
+            this.txtBxDroidInfo.Size = new System.Drawing.Size(494, 31);
+            this.txtBxDroidInfo.TabIndex = 31;
+            // 
             // btnRunDroid
             // 
             this.btnRunDroid.Location = new System.Drawing.Point(5, 34);
@@ -209,20 +219,22 @@ namespace KDRS_Production
             this.lblToolError.TabIndex = 28;
             this.lblToolError.Text = "Error label";
             // 
-            // txtBxDroidInfo
+            // btnChkMissFiles
             // 
-            this.txtBxDroidInfo.Location = new System.Drawing.Point(148, 40);
-            this.txtBxDroidInfo.Multiline = true;
-            this.txtBxDroidInfo.Name = "txtBxDroidInfo";
-            this.txtBxDroidInfo.ReadOnly = true;
-            this.txtBxDroidInfo.Size = new System.Drawing.Size(494, 31);
-            this.txtBxDroidInfo.TabIndex = 31;
+            this.btnChkMissFiles.Location = new System.Drawing.Point(10, 373);
+            this.btnChkMissFiles.Name = "btnChkMissFiles";
+            this.btnChkMissFiles.Size = new System.Drawing.Size(137, 31);
+            this.btnChkMissFiles.TabIndex = 32;
+            this.btnChkMissFiles.Text = "Check doc files";
+            this.btnChkMissFiles.UseVisualStyleBackColor = true;
+            this.btnChkMissFiles.Click += new System.EventHandler(this.btnChkMissFiles_Click);
             // 
             // ToolHandling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnChkMissFiles);
             this.Controls.Add(this.lblToolError);
             this.Controls.Add(this.pnlDroid);
             this.Controls.Add(this.txtBxResultFolder);
@@ -267,5 +279,6 @@ namespace KDRS_Production
         private System.Windows.Forms.Button btnChooseDroidJar;
         private System.Windows.Forms.Label lblToolError;
         private System.Windows.Forms.TextBox txtBxDroidInfo;
+        private System.Windows.Forms.Button btnChkMissFiles;
     }
 }

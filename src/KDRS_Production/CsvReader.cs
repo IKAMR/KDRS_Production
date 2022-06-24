@@ -49,7 +49,7 @@ namespace KDRS_Production
 
             var assembly = Assembly.GetExecutingAssembly();
 
-            using (Stream stream = assembly.GetManifestResourceStream("KDRS_Production.Resources.15KK_nnn_A_depot - log_v2.0_template.txt"))
+            using (Stream stream = assembly.GetManifestResourceStream("KDRS_Production.Resources.15KK_nnn_A_depot-log_v2.0_template.txt"))
             using (StreamReader sr = new StreamReader(stream))
             {
 

@@ -197,7 +197,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\15KK_nnn_A_depot-log_v2.0_template.txt" />
+    <EmbeddedResource Include="Resources\15KK_nnn_A_depot-log_v2.0_template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

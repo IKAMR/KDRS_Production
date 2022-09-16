@@ -8,6 +8,9 @@ namespace KDRS_Production
 {
     public partial class ToolHandling : Form
     {
+
+        DocValidator docValidator;
+
         public ToolHandling(string packageID, string workingDir)
         {
             InitializeComponent();
@@ -15,6 +18,9 @@ namespace KDRS_Production
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(ToolHandling_FormClosing);
 
             comBxToolSelect.Items.AddRange(new object[] { "VeraPDF", "Droid" });
+
+            docValidator = new DocValidator();
+
 
             // IF Droid selected
             txtBxResultFolder.Text = Path.Combine(workingDir, "repository_operations");
@@ -227,7 +233,17 @@ namespace KDRS_Production
 
         private void btnChkMissFiles_Click(object sender, EventArgs e)
         {
-            CheckMissingFiles();
+            try
+            {
+                progressBar1.Style = ProgressBarStyle.Marquee;
+                docValidator.CheckMissingFiles(txtBxTargetFolder.Text, txtBxResultFolder.Text, txtBxPackageID.Text);
+                progressBar1.Style = ProgressBarStyle.Continuous;
+
+            }
+            catch (Exception ex)
+            {
+                lblToolError.Text = ex.Message;
+            }
         }
         //-------------------------------------------------------------------------------
 

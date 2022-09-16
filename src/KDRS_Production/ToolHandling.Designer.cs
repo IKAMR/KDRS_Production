@@ -49,9 +49,13 @@ namespace KDRS_Production
             this.txtBxDroidJar = new System.Windows.Forms.TextBox();
             this.btnChooseDroidJar = new System.Windows.Forms.Button();
             this.lblToolError = new System.Windows.Forms.Label();
-            this.btnChkMissFiles = new System.Windows.Forms.Button();
+            this.btnChkDocFiles = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnListMissFiles = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.a.SuspendLayout();
             this.pnlDroid.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSelectLog
@@ -90,9 +94,9 @@ namespace KDRS_Production
             this.a.Controls.Add(this.btnImportLog);
             this.a.Controls.Add(this.txtBxLogPath);
             this.a.Controls.Add(this.btnSelectLog);
-            this.a.Location = new System.Drawing.Point(10, 266);
+            this.a.Location = new System.Drawing.Point(10, 251);
             this.a.Name = "a";
-            this.a.Size = new System.Drawing.Size(673, 92);
+            this.a.Size = new System.Drawing.Size(675, 92);
             this.a.TabIndex = 21;
             // 
             // txtBxPackageID
@@ -122,7 +126,7 @@ namespace KDRS_Production
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 107);
+            this.label2.Location = new System.Drawing.Point(12, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 24;
@@ -213,28 +217,53 @@ namespace KDRS_Production
             // 
             this.lblToolError.AutoSize = true;
             this.lblToolError.ForeColor = System.Drawing.Color.Red;
-            this.lblToolError.Location = new System.Drawing.Point(9, 428);
+            this.lblToolError.Location = new System.Drawing.Point(12, 474);
             this.lblToolError.Name = "lblToolError";
             this.lblToolError.Size = new System.Drawing.Size(54, 13);
             this.lblToolError.TabIndex = 28;
             this.lblToolError.Text = "Error label";
             // 
-            // btnChkMissFiles
+            // btnChkDocFiles
             // 
-            this.btnChkMissFiles.Location = new System.Drawing.Point(10, 373);
-            this.btnChkMissFiles.Name = "btnChkMissFiles";
-            this.btnChkMissFiles.Size = new System.Drawing.Size(137, 31);
-            this.btnChkMissFiles.TabIndex = 32;
-            this.btnChkMissFiles.Text = "Check doc files";
-            this.btnChkMissFiles.UseVisualStyleBackColor = true;
-            this.btnChkMissFiles.Click += new System.EventHandler(this.btnChkMissFiles_Click);
+            this.btnChkDocFiles.Location = new System.Drawing.Point(5, 3);
+            this.btnChkDocFiles.Name = "btnChkDocFiles";
+            this.btnChkDocFiles.Size = new System.Drawing.Size(137, 31);
+            this.btnChkDocFiles.TabIndex = 32;
+            this.btnChkDocFiles.Text = "Check doc files";
+            this.btnChkDocFiles.UseVisualStyleBackColor = true;
+            this.btnChkDocFiles.Click += new System.EventHandler(this.btnChkMissFiles_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnListMissFiles);
+            this.panel1.Controls.Add(this.btnChkDocFiles);
+            this.panel1.Location = new System.Drawing.Point(10, 349);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(675, 106);
+            this.panel1.TabIndex = 33;
+            // 
+            // btnListMissFiles
+            // 
+            this.btnListMissFiles.Location = new System.Drawing.Point(5, 40);
+            this.btnListMissFiles.Name = "btnListMissFiles";
+            this.btnListMissFiles.Size = new System.Drawing.Size(137, 31);
+            this.btnListMissFiles.TabIndex = 33;
+            this.btnListMissFiles.Text = "List missing doc files";
+            this.btnListMissFiles.UseVisualStyleBackColor = true;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(576, 474);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(212, 13);
+            this.progressBar1.TabIndex = 34;
             // 
             // ToolHandling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnChkMissFiles);
+            this.ClientSize = new System.Drawing.Size(800, 496);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblToolError);
             this.Controls.Add(this.pnlDroid);
             this.Controls.Add(this.txtBxResultFolder);
@@ -246,12 +275,14 @@ namespace KDRS_Production
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBxPackageID);
             this.Controls.Add(this.a);
+            this.Controls.Add(this.panel1);
             this.Name = "ToolHandling";
             this.Text = "ToolHandling";
             this.a.ResumeLayout(false);
             this.a.PerformLayout();
             this.pnlDroid.ResumeLayout(false);
             this.pnlDroid.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +310,9 @@ namespace KDRS_Production
         private System.Windows.Forms.Button btnChooseDroidJar;
         private System.Windows.Forms.Label lblToolError;
         private System.Windows.Forms.TextBox txtBxDroidInfo;
-        private System.Windows.Forms.Button btnChkMissFiles;
+        private System.Windows.Forms.Button btnChkDocFiles;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnListMissFiles;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

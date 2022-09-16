@@ -245,9 +245,7 @@ namespace KDRS_Production
             foreach (string node in softNodes)
             {
                 Console.WriteLine(node);
-
             }
-
 
             return valueList;
         }
@@ -418,13 +416,8 @@ namespace KDRS_Production
                             return new InfoXml(name, description, query, null);
                     }
                     break;
-
-
-
-
             }
              return null;
-
         }
 
         //-------------------------------------------------------------------------------

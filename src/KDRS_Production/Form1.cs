@@ -282,7 +282,7 @@ namespace KDRS_Production
     public static class Globals
     {
         public static readonly String toolName = "KDRS Production";
-        public static readonly String toolVersion = "0.5-rc2";
+        public static readonly String toolVersion = "0.5-rc3";
     }
 
 }
